@@ -4,48 +4,83 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HackAtCewitManagementSystem</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/branding/apple-touch-icon-144x144-precomposed.png" />
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/branding.css" asp-append-version="true" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/branding.css" asp-append-version="true" />
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">HackAtCewitManagementSystem</a>
+    <div>
+        <nav class="stonybrook-navbar-rays navbar navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-right">
+                        <li><a target="_blank" href="https://www.cewit.org">CEWIT</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-                @await Html.PartialAsync("_LoginPartial")
-            </div>
-        </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - HackAtCewitManagementSystem</p>
-        </footer>
+        </nav>
     </div>
+    <div>
+        <div class="branding-container">
+            <div class="logo-container">
+                <div class="row">
+                    <div style="width: 50%; float:left;">
+                        <a href="https://www.cewit.org">
+                            <img src="/images/branding/cewitlogo.png" alt="CEWIT LOGO">
+                        </a>
+                    </div>
+                    <div style="width: 50%; float:left;">
+                        <img style="width: 100%; height: 100%;" src="/images/HackCEWITStackBlack_NoDate.png" alt="Hack at CEWIT Stacked Logo Black">
+                    </div>
+                </div>
+            </div>
+            <div class="tagline">A New York State Center of Excellence</div>
+        </div>
+        <nav class="stonybrook-navbar-solid navbar">
+            <div style="height: 100% !important" class="navbar-collapse collapse">
+                <div style="text-align: center; height: 100% !important">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">HOME</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">ABOUT</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Faq">FAQ</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Schedule">SCHEDULE</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Video">VIDEO</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Resources">RESOURCES</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
+    </div>
+    <div class="container body-wrapper">
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+    </div>
+    <footer style="text-align: center; width: 100%; height: 100%;">
+        <p>
+            &copy; 2018 - <a href="https://www.stonybrook.edu/">Stony Brook University</a>
+        </p>
+    </footer>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
