@@ -42,16 +42,7 @@
     <div>
         <div class="branding-container">
             <div class="logo-container">
-                <div class="row">
-                    <div style="width: 50%; float:left;">
-                        <a href="https://www.cewit.org">
-                            <img src="/images/branding/cewitlogo.png" alt="CEWIT LOGO">
-                        </a>
-                    </div>
-                    <div style="width: 50%; float:left;">
-                        <img style="width: 100%; height: 100%;" src="/images/HackCEWITStackBlack_NoDate.png" alt="Hack at CEWIT Stacked Logo Black">
-                    </div>
-                </div>
+                <img src="~/images/branding/cewitlogo.png" />
             </div>
             <div class="tagline">A New York State Center of Excellence</div>
         </div>
@@ -59,12 +50,12 @@
             <div style="height: 100% !important" class="navbar-collapse collapse">
                 <div style="text-align: center; height: 100% !important">
                     <ul class="nav navbar-nav">
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">HOME</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">ABOUT</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Faq">FAQ</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Schedule">SCHEDULE</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Video">VIDEO</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Resources">RESOURCES</a></li>
+                        <li class="@(ViewBag.Active=="Home"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Index">HOME</a></li>
+                        <li class="@(ViewBag.Active=="About"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="About">ABOUT</a></li>
+                        <li class="@(ViewBag.Active=="Faq"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Faq">FAQ</a></li>
+                        <li class="@(ViewBag.Active=="Schedule"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Schedule">SCHEDULE</a></li>
+                        <li class="@(ViewBag.Active=="Video"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Video">VIDEO</a></li>
+                        <li class="@(ViewBag.Active=="Resources"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Resources">RESOURCES</a></li>
                     </ul>
                 </div>
             </div>
@@ -73,10 +64,21 @@
     </div>
     <div class="container body-wrapper">
         <div class="container body-content">
+            <div class="branding-container">
+                <div class="event-container">
+                    <img class="event-image" src="~/images/HackCEWITStackBlack_NoDate.png" />
+                </div>
+            </div>
             @RenderBody()
         </div>
     </div>
-    <footer style="text-align: center; width: 100%; height: 100%;">
+    <footer>
+        <a href="https://cewit.org">CEWIT Home Page</a>
+        <div style="padding: 0px 10px 0px 10px; display: inline;">|</div>
+        <a href="http://www.stonybrook.edu/sb/search.shtml">Search Stony Brook</a>
+        <div style="padding: 0px 10px 0px 10px; display: inline;">|</div>
+        <a href="https://twitter.com/CEWIT_SBU">&#64;CEWIT_SBU</a>
+        <br /><br />
         <p>
             &copy; 2018 - <a href="https://www.stonybrook.edu/">Stony Brook University</a>
         </p>

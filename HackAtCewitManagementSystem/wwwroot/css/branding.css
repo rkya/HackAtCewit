@@ -28,18 +28,13 @@
 .stonybrook-navbar-solid {
     background-color: #990000;
     height: 76px;
+    margin-bottom: 0px !important;
 }
 
     .stonybrook-navbar-solid a {
         color: white;
         float: none;
         text-align: center;
-        border: 1px solid #990000;
-    }
-
-    .stonybrook-navbar-solid > div.navbar-collapse.collapse > div > ul > li > a:hover, a:focus {
-        background-color: #a00 !important;
-        border: 1px solid #a00;
     }
 
     .stonybrook-navbar-solid > div.navbar-collapse.collapse > div > ul {
@@ -49,16 +44,27 @@
         height: 100%;
     }
 
-        .stonybrook-navbar-solid > div.navbar-collapse.collapse > div > ul > li {
-            display: inline-block;
-            font-family: 'Effra W01 Bold','Arial',sans-serif;
-            text-transform: uppercase;
-            font-weight: normal;
-            font-size: 17px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-        }
+    .stonybrook-navbar-solid > div.navbar-collapse.collapse > div > ul > li {
+        display: inline-block;
+        font-family: 'Effra W01 Bold','Arial',sans-serif;
+        text-transform: uppercase;
+        font-weight: normal;
+        font-size: 17px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .stonybrook-navbar-solid > div.navbar-collapse.collapse > div > ul > li.active {
+        background-color: #a00 !important;
+        border: 1px solid #a00;
+    }
+    .stonybrook-navbar-solid > div.navbar-collapse.collapse > div > ul > li:hover {
+        background-color: #a00 !important;
+        border: 1px solid #a00;
+    }
+    .stonybrook-navbar-solid > div.navbar-collapse.collapse > div > ul > li > a:hover {
+        background-color: transparent;
+    }
 
 .tagline {
     display: block;
@@ -88,24 +94,15 @@
     max-width: 1160px;
     margin: 40px auto 36px;
 }
-
-footer {
-    background-color: #000000;
-    background-size: cover !important;
-    color: white !important;
-    padding: 2%;
+.event-container {
+    max-width: 580px;
+    margin: 10px auto 10px;
 }
-
-    footer > p > a {
-        color: white !important;
-    }
-
-    footer a:hover {
-        text-decoration: none;
-    }
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
+.event-image {
+    height: 100%;
+    width: 100%;
+    display: block;
+    margin: auto;
 }
 .row {
     width: 100%;
@@ -114,4 +111,17 @@ body {
     content: "";
     clear: both;
     display: table;
+}
+.video-overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+}
+.video-overlay-text {
+    display: block;
+    margin: auto;
 }
