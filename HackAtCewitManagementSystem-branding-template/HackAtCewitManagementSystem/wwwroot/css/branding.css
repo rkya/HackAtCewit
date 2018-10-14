@@ -1,0 +1,127 @@
+﻿.stonybrook-navbar-rays {
+    background: url(/images/branding/rays/white-rays-top-nav.jpg);
+    display: block !important;
+    color: black;
+    height: 44px;
+    min-height: 44px !important;
+    margin-bottom: 0px !important;
+    position: inherit;
+}
+
+    .stonybrook-navbar-rays > div > div.navbar-collapse.collapse > ul {
+    }
+
+        .stonybrook-navbar-rays > div > div.navbar-collapse.collapse > ul > li > a {
+            text-shadow: none;
+            font-size: 12px;
+            font-family: "Effra W01", Helvetica, sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: black;
+        }
+
+            .stonybrook-navbar-rays > div > div.navbar-collapse.collapse > ul > li > a:hover, a:focus {
+                color: #900;
+                background-color: transparent !important;
+            }
+
+.stonybrook-navbar-solid {
+    background-color: #990000;
+    height: 76px;
+    margin-bottom: 0px !important;
+}
+
+    .stonybrook-navbar-solid a {
+        color: white;
+        float: none;
+        text-align: center;
+    }
+
+    .stonybrook-navbar-solid > div.navbar-collapse.collapse > div > ul {
+        display: inline-block;
+        float: none !important;
+        float: none !important;
+        height: 100%;
+    }
+
+    .stonybrook-navbar-solid > div.navbar-collapse.collapse > div > ul > li {
+        display: inline-block;
+        font-family: 'Effra W01 Bold','Arial',sans-serif;
+        text-transform: uppercase;
+        font-weight: normal;
+        font-size: 17px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .stonybrook-navbar-solid > div.navbar-collapse.collapse > div > ul > li.active {
+        background-color: #a00 !important;
+        border: 1px solid #a00;
+    }
+    .stonybrook-navbar-solid > div.navbar-collapse.collapse > div > ul > li:hover {
+        background-color: #a00 !important;
+        border: 1px solid #a00;
+    }
+    .stonybrook-navbar-solid > div.navbar-collapse.collapse > div > ul > li > a:hover {
+        background-color: transparent;
+    }
+
+.tagline {
+    display: block;
+    position: absolute;
+    text-align: right;
+    padding: 0 0 13px 0;
+    font-family: 'CenturySchoolbookW01-It 927458';
+    font-style: italic;
+    right: 0;
+    font-size: 1.2em;
+    bottom: 0px;
+}
+
+.new-brand header .tagline {
+    font-family: 'MuseoSlabW01-300Italic', 'CenturySchoolbookW01-It 927458';
+    font-style: normal;
+}
+
+.branding-container {
+    max-width: 1168px;
+    margin: auto;
+    height: 100%;
+    position: relative;
+}
+
+.logo-container {
+    max-width: 1160px;
+    margin: 40px auto 36px;
+}
+.event-container {
+    max-width: 580px;
+    margin: 10px auto 10px;
+}
+.event-image {
+    height: 100%;
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+.row {
+    width: 100%;
+}
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.video-overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+}
+.video-overlay-text {
+    display: block;
+    margin: auto;
+}
