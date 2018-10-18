@@ -68,8 +68,31 @@ namespace HackAtCewitManagementSystem.Controllers
         public IActionResult Schedule()
         {
             ViewData["Message"] = "Hack@CEWIT is the Center of Excellence in Wireless and Information Technology (CEWIT)'s interdisciplinary IoT-focused hackathon bringing students together for a two-day technical challenge over President's Day Weekend.";
+            //ViewBag.Active = "Schedule";
+            var model = new List<Schedule>();
+
+            using (SqliteConnection conn =
+                new SqliteConnection("Data Source=test.db"))
+            {
+                conn.Open();
+
+                SqliteCommand cmd = new SqliteCommand
+            ("SELECT * from Schedule", conn);
+
+                SqliteDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    var schedule = new Schedule();
+                    schedule.StartTime = (string)rdr["StartTime"];
+                    schedule.EndTime = (string)rdr["EndTime"];
+                    schedule.EventDescription = (string)rdr["EventDescription"];
+                    schedule.Room = (string)rdr["Room"];
+
+                    model.Add(schedule);
+                }
+            }
             ViewBag.Active = "Schedule";
-            return View();
+            return View(model);
         }
 
         public IActionResult Video()

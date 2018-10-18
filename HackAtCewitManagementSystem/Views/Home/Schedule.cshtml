@@ -1,7 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Schedule";
 }
-
 <section class="schedule text-center" id="schedule">
     <div class="container sched">
         <div class="row">
@@ -9,36 +8,25 @@
                 <hr>
                 <div class="container">
                     <div class="tab">
-                        <table style="width: 100%; table-layout: fixed;" border="0" cellpadding="0" cellspacing="0">
-                            <tbody>
-                                <tr class="days">
-                                    <th></th>
-                                    <th>Friday 2/16</th>
-                                    <th></th>
-                                    <th>Saturday 2/17</th>
-                                    <th></th>
-                                    <th>Sunday 2/18</th>
-                                    <th></th>
-                                </tr>
-
+                        @model List<Schedule>
+                        <h1>Schedule</h1>
+                        <table>
+                            <tr>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Description</th>
+                                <th>Room Number</th>
+                            </tr>
+                            @foreach (var schedule in Model)
+                            {
                                 <tr>
-                                    <!-- 2/16 -->
-                                    <td colspan="2">TBD</td>
-                                    <!-- 2/17 -->
-                                    <td colspan="2">TBD</td>
-                                    <!-- 2/18 -->
-                                    <td colspan="2">TBD</td>
+                                    <td>@schedule.StartTime</td>
+                                    <td>@schedule.EndTime</td>
+                                    <td>@schedule.EventDescription</td>
+                                    <td>@schedule.Room</td>
                                 </tr>
-
-                            </tbody>
+                            }
                         </table>
-                        <p>
-                            <br>
-                            <b><big>All Weekend:</big></b>
-                            Hack@CEWIT Sponsor Stations: Hacker Gurus &amp; Recruitment Teams
-                            <br>Hack@CEWIT Hardware Lab
-                            <br>Beverage &amp; Snack Stations
-                        </p>
                     </div>
                 </div>
             </div>
