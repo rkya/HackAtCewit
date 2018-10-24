@@ -1,0 +1,25 @@
+﻿stages:
+    - build
+    - unit-test
+    - deploy
+    
+build:
+    stage: build
+    script:
+        - /Library/Frameworks/Mono.framework/Versions/5.12.0/bin/msbuild ~/Documents/sbu/courses/524/HackAtCewitDesktopApplication/HackAtCewitManagementSystem/HackAtCewitManagementSystem/HackAtCewitManagementSystem.csproj
+    tags:
+        - development
+        
+unit-test:
+    stage: unit-test
+    script:
+        - cd Tests; dotnet test
+    tags:
+        - development
+    
+deploy:
+    stage: deploy
+    script:
+        - cp -r ./* ~/Production/
+    tags:
+        - development
