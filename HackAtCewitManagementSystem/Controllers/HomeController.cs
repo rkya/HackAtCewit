@@ -36,63 +36,63 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult Faq()
-        {
-            ViewData["Message"] = "Hack@CEWIT is the Center of Excellence in Wireless and Information Technology (CEWIT)'s interdisciplinary IoT-focused hackathon bringing students together for a two-day technical challenge over President's Day Weekend.";
-            //ViewBag.Active = "Faq";
-            //return View();
-            var model = new List<Faq>();
+        //public IActionResult Faq([FromHeader]string sendJson)
+        //{
+        //    ViewData["Message"] = "Hack@CEWIT is the Center of Excellence in Wireless and Information Technology (CEWIT)'s interdisciplinary IoT-focused hackathon bringing students together for a two-day technical challenge over President's Day Weekend.";
+        //    //ViewBag.Active = "Faq";
+        //    //return View();
+        //    var model = new List<Faq>();
 
-            using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
-            {
-                conn.Open();
+        //    using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
+        //    {
+        //        conn.Open();
 
-                SqliteCommand cmd = new SqliteCommand("SELECT * from Faq", conn);
+        //        SqliteCommand cmd = new SqliteCommand("SELECT * from Faq", conn);
 
-                SqliteDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    var faq = new Faq
-                    {
-                        Question = (string)rdr["Question"],
-                        Answer = (string)rdr["Answer"]
-                    };
+        //        SqliteDataReader rdr = cmd.ExecuteReader();
+        //        while (rdr.Read())
+        //        {
+        //            var faq = new Faq
+        //            {
+        //                Question = (string)rdr["Question"],
+        //                Answer = (string)rdr["Answer"]
+        //            };
 
-                    model.Add(faq);
-                }
-            }
-            ViewBag.Active = "Faq";
-            return View(model);
-        }
+        //            model.Add(faq);
+        //        }
+        //    }
+        //    ViewBag.Active = "Faq";
+        //    return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
+        //}
 
-        public IActionResult Schedule([FromHeader]string sendJson)
-        {
-            ViewData["Message"] = "Hack@CEWIT is the Center of Excellence in Wireless and Information Technology (CEWIT)'s interdisciplinary IoT-focused hackathon bringing students together for a two-day technical challenge over President's Day Weekend.";
-            //ViewBag.Active = "Schedule";
-            var model = new List<Schedule>();
+        //public IActionResult Schedule([FromHeader]string sendJson)
+        //{
+        //    ViewData["Message"] = "Hack@CEWIT is the Center of Excellence in Wireless and Information Technology (CEWIT)'s interdisciplinary IoT-focused hackathon bringing students together for a two-day technical challenge over President's Day Weekend.";
+        //    //ViewBag.Active = "Schedule";
+        //    var model = new List<Schedule>();
 
-            using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
-            {
-                conn.Open();
+        //    using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
+        //    {
+        //        conn.Open();
 
-                SqliteCommand cmd = new SqliteCommand("SELECT * from Schedule", conn);
+        //        SqliteCommand cmd = new SqliteCommand("SELECT * from Schedule", conn);
 
-                SqliteDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    var schedule = new Schedule();
-                    schedule.StartTime = (string)rdr["StartTime"];
-                    schedule.EndTime = (string)rdr["EndTime"];
-                    schedule.EventDescription = (string)rdr["EventDescription"];
-                    schedule.Room = (string)rdr["Room"];
+        //        SqliteDataReader rdr = cmd.ExecuteReader();
+        //        while (rdr.Read())
+        //        {
+        //            var schedule = new Schedule();
+        //            schedule.StartTime = (string)rdr["StartTime"];
+        //            schedule.EndTime = (string)rdr["EndTime"];
+        //            schedule.EventDescription = (string)rdr["EventDescription"];
+        //            schedule.Room = (string)rdr["Room"];
 
-                    model.Add(schedule);
-                }
-            }
-            ViewBag.Active = "Schedule";
+        //            model.Add(schedule);
+        //        }
+        //    }
+        //    ViewBag.Active = "Schedule";
 
-            return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
-        }
+        //    return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
+        //}
 
         public IActionResult Video()
         {

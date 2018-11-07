@@ -8,19 +8,15 @@ using System.ComponentModel.DataAnnotations;
 namespace HackAtCewitManagementSystem.Models
 {
     // Add profile data for application users by adding properties to the ApplicationUser class
-    public class Schedule
+    public class Video
     {
-        [Required]
-        public string StartTime { get; set; }
+        public long Id { get; set; }
 
         [Required]
-        public string EndTime { get; set; }
+        public string Title { get; set; }
 
         [Required]
-        public string EventDescription { get; set; }
-
-        [Required]
-        public string Room { get; set; }
+        public string Url { get; set; }
 
     }
 }
