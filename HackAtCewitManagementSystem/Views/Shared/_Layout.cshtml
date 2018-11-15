@@ -52,8 +52,8 @@
                     <ul class="nav navbar-nav">
                         <li class="@(ViewBag.Active=="Home"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Index">HOME</a></li>
                         <li class="@(ViewBag.Active=="About"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="About">ABOUT</a></li>
-                        <li class="@(ViewBag.Active=="Faq"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Faq">FAQ</a></li>
-                        <li class="@(ViewBag.Active=="Schedule"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Schedule">SCHEDULE</a></li>
+                        <li class="@(ViewBag.Active=="Faq"? "active" : "")"><a asp-area="" asp-controller="Faq" asp-action="Index">FAQ</a></li>
+                        <li class="@(ViewBag.Active=="Schedule"? "active" : "")"><a asp-area="" asp-controller="Schedule" asp-action="Index">SCHEDULE</a></li>
                         <li class="@(ViewBag.Active=="Video"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Video">VIDEO</a></li>
                         <li class="@(ViewBag.Active=="Resources"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Resources">RESOURCES</a></li>
                     </ul>
