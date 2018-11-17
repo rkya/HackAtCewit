@@ -13,7 +13,7 @@ using Microsoft.Data.Sqlite;
 namespace HackAtCewitManagementSystem.Controllers
 {
     [Authorize]
-    public class ResourcesController : Controller
+    public class ScheduleController : Controller
     {
         [AllowAnonymous]
         [Route("Schedule/{id?}")]
