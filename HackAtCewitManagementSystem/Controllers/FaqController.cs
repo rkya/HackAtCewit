@@ -30,10 +30,11 @@ namespace HackAtCewitManagementSystem.Controllers
 
         [HttpPost]
         [Route("Faq/Add")]
+        [Authorize(Roles = "admin")]
         public IActionResult Add(Faq faq) {
-            Console.WriteLine("----------------------------------");
-            Console.WriteLine(faq.Question);
-            Console.WriteLine(faq.Answer);
+            //Console.WriteLine("----------------------------------");
+            //Console.WriteLine(faq.Question);
+            //Console.WriteLine(faq.Answer);
 
             FaqDBConnector.Create(faq);
 
@@ -42,6 +43,7 @@ namespace HackAtCewitManagementSystem.Controllers
 
         [HttpGet]
         [Route("Faq/Add")]
+        [Authorize(Roles = "admin")]
         public IActionResult Add()
         {
             return View(new Faq());
@@ -49,11 +51,12 @@ namespace HackAtCewitManagementSystem.Controllers
 
         [AcceptVerbs("POST", "PUT")]
         [Route("Faq/Edit/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult Edit(Faq faq, int id)
         {
-            Console.WriteLine("----------------------------------");
-            Console.WriteLine(faq.Question);
-            Console.WriteLine(faq.Answer);
+            //Console.WriteLine("----------------------------------");
+            //Console.WriteLine(faq.Question);
+            //Console.WriteLine(faq.Answer);
 
             FaqDBConnector.Update(faq);
 
@@ -62,13 +65,19 @@ namespace HackAtCewitManagementSystem.Controllers
 
         [HttpGet]
         [Route("Faq/Edit/{id}")]
+        [Authorize(Roles ="admin")]
         public IActionResult Edit(int id)
         {
+            //Console.WriteLine(User.IsInRole("admin"));
+            //Console.WriteLine(User.Identity);
+            //Console.WriteLine(User.Claims);
+            //Console.WriteLine(User.Identities);
             return View(FaqDBConnector.GetFaq(id));
         }
 
         [AcceptVerbs("DELETE", "GET")]
         [Route("Faq/Delete/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
             FaqDBConnector.Delete(id);

@@ -434,6 +434,32 @@ namespace HackAtCewitManagementSystem.Controllers
         [HttpGet]
         public IActionResult AccessDenied()
         {
+            //Console.WriteLine("-----------");
+
+            //List<Claim> list = User.Claims.ToList();
+            //for (int i = 0; i < list.Count; i++) {
+            //    Console.WriteLine(list[i].Issuer);
+            //    Console.WriteLine(list[i].OriginalIssuer);
+            //    Console.WriteLine(list[i].Type);
+            //    Console.WriteLine(list[i].Value);
+            //    Console.WriteLine(list[i].ValueType);
+
+            //    List<KeyValuePair<string, string>> l2 = list[i].Properties.ToList();
+            //    Console.WriteLine(l2.Count + "<<<");
+            //    for (int j = 0; j < l2.Count; j++) {
+            //        Console.WriteLine("  " + l2[j].Key);
+            //        Console.WriteLine("  " + l2[j].Value);
+            //    }
+            //    Console.WriteLine(list[i].Subject);
+            //}
+
+
+            //Console.WriteLine(User.Claims.ToList().Count);
+            //Console.WriteLine(User.Identities.ToList().Count);
+            //Console.WriteLine(User.Identity.Name);
+            //Console.WriteLine("Participant ? " + User.IsInRole("participant"));
+            //Console.WriteLine("Admin ? " + User.IsInRole("admin"));
+            //Console.WriteLine("ADMIN ? " + User.IsInRole("ADMIN"));
             return View();
         }
 

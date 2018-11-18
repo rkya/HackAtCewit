@@ -36,13 +36,14 @@ namespace HackAtCewitManagementSystem.Controllers
 
         [HttpPost]
         [Route("Resources/Add")]
+        [Authorize(Roles = "admin")]
         public IActionResult Add(Resource resource)
         {
-            Console.WriteLine("----------------------------------");
-            Console.WriteLine(resource.Title);
-            Console.WriteLine(resource.Link);
-            Console.WriteLine(resource.Description);
-            Console.WriteLine(resource.ProviderName);
+            //Console.WriteLine("----------------------------------");
+            //Console.WriteLine(resource.Title);
+            //Console.WriteLine(resource.Link);
+            //Console.WriteLine(resource.Description);
+            //Console.WriteLine(resource.ProviderName);
 
             ResourceDBConnector.Create(resource);
 
@@ -51,6 +52,7 @@ namespace HackAtCewitManagementSystem.Controllers
 
         [HttpGet]
         [Route("Resources/Add")]
+        [Authorize(Roles = "admin")]
         public IActionResult Add()
         {
             return View(new Resource());
@@ -58,13 +60,14 @@ namespace HackAtCewitManagementSystem.Controllers
 
         [AcceptVerbs("POST", "PUT")]
         [Route("Resources/Edit/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult Edit(Resource resource, int id)
         {
-            Console.WriteLine("----------------------------------");
-            Console.WriteLine(resource.Title);
-            Console.WriteLine(resource.Link);
-            Console.WriteLine(resource.Description);
-            Console.WriteLine(resource.ProviderName);
+            //Console.WriteLine("----------------------------------");
+            //Console.WriteLine(resource.Title);
+            //Console.WriteLine(resource.Link);
+            //Console.WriteLine(resource.Description);
+            //Console.WriteLine(resource.ProviderName);
 
             ResourceDBConnector.Update(resource);
 
@@ -73,6 +76,7 @@ namespace HackAtCewitManagementSystem.Controllers
 
         [HttpGet]
         [Route("Resources/Edit/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult Edit(int id)
         {
             return View(ResourceDBConnector.GetResource(id));
@@ -80,6 +84,7 @@ namespace HackAtCewitManagementSystem.Controllers
 
         [AcceptVerbs("DELETE", "GET")]
         [Route("Resources/Delete/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
             ResourceDBConnector.Delete(id);
