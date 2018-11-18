@@ -16,14 +16,16 @@
                     @model List<Faq>
                     @foreach (var faq in Model)
                     {
-
                         <div class="section-heading">
                             <h3>@faq.Question</h3>
                         </div>
-                        <div>
-                            <input type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Faq", new { id=faq.Id })'" />
-                            <input type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Faq", new { id=faq.Id })'" />
-                        </div>
+                        @if (this.User.IsInRole("admin"))
+                        {
+                            <div>
+                                <input type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Faq", new { id=faq.Id })'" />
+                                <input type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Faq", new { id=faq.Id })'" />
+                            </div>
+                        }
                         <p>
                             @faq.Answer
                         </p>
