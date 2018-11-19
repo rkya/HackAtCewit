@@ -24,6 +24,8 @@
     <Folder Include="Models\VideoViewModels\" />
     <Folder Include="Models\ResourceViewModels\" />
     <Folder Include="Views\Resources\" />
+    <Folder Include="Models\LeaderBoardModels\" />
+    <Folder Include="Views\LeaderBoard\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\DaysController.cs" />
