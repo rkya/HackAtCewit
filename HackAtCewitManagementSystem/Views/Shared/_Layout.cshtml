@@ -56,6 +56,20 @@
                         <li class="@(ViewBag.Active=="Schedule"? "active" : "")"><a asp-area="" asp-controller="Schedule" asp-action="Index">SCHEDULE</a></li>
                         <li class="@(ViewBag.Active=="Video"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Video">VIDEO</a></li>
                         <li class="@(ViewBag.Active=="Resources"? "active" : "")"><a asp-area="" asp-controller="Resources" asp-action="Index">RESOURCES</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <form action="/Account/Logout" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <button style="background-color:transparent; color:white; border:unset;" type="submit" formmethod="post" name="logout" value="LOGOUT">LOGOUT</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="@(ViewBag.Active=="Login"? "active" : "")"><a asp-area="" asp-controller="Account" asp-action="Login">LOGIN</a></li>
+                        }
+
                     </ul>
                 </div>
             </div>
