@@ -54,7 +54,7 @@
                         <li class="@(ViewBag.Active=="About"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="About">ABOUT</a></li>
                         <li class="@(ViewBag.Active=="Faq"? "active" : "")"><a asp-area="" asp-controller="Faq" asp-action="Index">FAQ</a></li>
                         <li class="@(ViewBag.Active=="Schedule"? "active" : "")"><a asp-area="" asp-controller="Schedule" asp-action="Index">SCHEDULE</a></li>
-                        <li class="@(ViewBag.Active=="Video"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Video">VIDEO</a></li>
+                        <li class="@(ViewBag.Active=="Video"? "active" : "")"><a asp-area="" asp-controller="Videos" asp-action="Index">VIDEO</a></li>
                         <li class="@(ViewBag.Active=="Resources"? "active" : "")"><a asp-area="" asp-controller="Resources" asp-action="Index">RESOURCES</a></li>
                         @if (User.Identity.IsAuthenticated)
                         {

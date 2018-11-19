@@ -41,13 +41,5 @@ namespace HackAtCewitManagementSystem.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-        [AllowAnonymous]
-        public IActionResult Video()
-        {
-            ViewData["Message"] = "Hack@CEWIT is the Center of Excellence in Wireless and Information Technology (CEWIT)'s interdisciplinary IoT-focused hackathon bringing students together for a two-day technical challenge over President's Day Weekend.";
-            ViewBag.Active = "Video";
-            return View();
-        }
     }
 }
