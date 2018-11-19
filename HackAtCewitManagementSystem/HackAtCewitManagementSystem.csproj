@@ -27,6 +27,8 @@
     <Folder Include="Models\LeaderBoardModels\" />
     <Folder Include="Views\LeaderBoard\" />
     <Folder Include="Views\Videos\" />
+    <Folder Include="Models\CheckinModels\" />
+    <Folder Include="Views\Checkin\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\DaysController.cs" />

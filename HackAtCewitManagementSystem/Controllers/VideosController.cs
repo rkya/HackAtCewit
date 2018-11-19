@@ -16,6 +16,7 @@ namespace HackAtCewitManagementSystem.Controllers
         [AllowAnonymous]
         public IActionResult Index([FromHeader]string sendJson)
         {
+            ViewBag.Active = "Video";
             var model = VideoDBConnector.GetVideos();
             return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
         }
