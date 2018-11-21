@@ -10,11 +10,11 @@ namespace HackAtCewitManagementSystem.Utils
         public static List<Video> GetVideos() {
             List<Video> videos = new List<Video>();
 
-            using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
+            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
             {
                 conn.Open();
 
-                SqliteCommand cmd = new SqliteCommand("SELECT * from Video", conn);
+                SqliteCommand cmd = new SqliteCommand(Constants.Sql.SELECT_ALL_VIDEOS, conn);
 
                 SqliteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())

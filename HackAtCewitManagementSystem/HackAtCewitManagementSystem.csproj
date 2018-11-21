@@ -32,11 +32,14 @@
     <Folder Include="wwwroot\css\Faq\" />
     <Folder Include="wwwroot\css\Resources\" />
     <Folder Include="wwwroot\css\Schedule\" />
+    <Folder Include="Views\Day\" />
+    <Folder Include="wwwroot\css\Day\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\DaysController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Resources\Edit.cshtml" />
+    <Content Remove="Views\Schedule\Edit.cshtml" />
   </ItemGroup>
 </Project>

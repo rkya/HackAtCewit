@@ -10,7 +10,7 @@ namespace HackAtCewitManagementSystem.Utils
         public static List<Checkin> GetCheckins() {
             List<Checkin> checkins = new List<Checkin>();
 
-            using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
+            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
             {
                 conn.Open();
 
@@ -46,7 +46,7 @@ namespace HackAtCewitManagementSystem.Utils
         {
             List<User> users = new List<User>();
 
-            using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
+            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
             {
                 conn.Open();
 
@@ -71,7 +71,7 @@ namespace HackAtCewitManagementSystem.Utils
         }
 
         public static bool Checkin(string user, string admin) {
-            using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
+            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
             {
                 conn.Open();
                 SqliteCommand insertSQL = new SqliteCommand("INSERT INTO Checkin(Username, CheckedinBy, Timestamp) VALUES ('" + user + "','" + admin + "', datetime('now', 'localtime'))", conn);

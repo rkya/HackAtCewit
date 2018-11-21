@@ -28,9 +28,7 @@ namespace HackAtCewitManagementSystem.Controllers
             Console.WriteLine("String----->" + sqlString);
             var model = ScheduleDBConnector.GetSchedules(sqlString);
 
-            ViewBag.Active = "Schedule";
-
-            return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
+            return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View("Views/Schedule/Index.cshtml", model);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace HackAtCewitManagementSystem.Utils
         public static List<Faq> GetFaqs() {
             List<Faq> faqs = new List<Faq>();
 
-            using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
+            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
             {
                 conn.Open();
 
@@ -37,7 +37,7 @@ namespace HackAtCewitManagementSystem.Utils
         {
             Faq faq = null;
 
-            using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
+            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
             {
                 conn.Open();
 
@@ -71,7 +71,7 @@ namespace HackAtCewitManagementSystem.Utils
         }
 
         private static bool InsertOrUpdate(Faq faq) {
-            using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
+            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
             {
                 conn.Open();
                 SqliteCommand insertSQL = new SqliteCommand("INSERT OR REPLACE INTO Faq(Id, Question, Answer) VALUES ((SELECT Id FROM Faq WHERE Id = " + faq.Id + "), '" + faq.Question + "', '" + faq.Answer + "')", conn);
@@ -95,7 +95,7 @@ namespace HackAtCewitManagementSystem.Utils
 
         public static bool Delete(int id)
         {
-            using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
+            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
             {
                 conn.Open();
                 SqliteCommand deleteSQL = new SqliteCommand("DELETE FROM Faq WHERE Id = " + id, conn);

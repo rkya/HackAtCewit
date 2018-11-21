@@ -15,7 +15,7 @@ namespace HackAtCewitManagementSystem.Utils
         {
             List<LeaderBoard> leaderBoard = new List<LeaderBoard>();
 
-            using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
+            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
             {
                 conn.Open();
 
