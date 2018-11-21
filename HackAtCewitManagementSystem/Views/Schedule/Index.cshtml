@@ -9,23 +9,28 @@
                 <div class="container">
                     <div class="tab">
                         @model List<Schedule>
-                        <h1>Schedule</h1>
+                        @*<h1>Schedule</h1>*@
                         <table>
-                            <tr>
-                                <th>Start Time</th>
-                                <th>End Time</th>
-                                <th>Description</th>
-                                <th>Room Number</th>
-                            </tr>
-                            @foreach (var schedule in Model)
-                            {
+                            <thead>
                                 <tr>
-                                    <td>@schedule.StartTime</td>
-                                    <td>@schedule.EndTime</td>
-                                    <td>@schedule.EventDescription</td>
-                                    <td>@schedule.Room</td>
+                                    <td>Start Time</td>
+                                    <td>End Time</td>
+                                    <td>Description</td>
+                                    <td>Room Number</td>
                                 </tr>
-                            }
+                            </thead>
+                            <tbody>
+                                @{int RowNo = 0;}
+                                @foreach (var schedule in Model)
+                                {
+                                    <tr class="@(++RowNo % 2==1? "trDark" : "trLight")">
+                                        <td>@schedule.StartTime</td>
+                                        <td>@schedule.EndTime</td>
+                                        <td>@schedule.EventDescription</td>
+                                        <td>@schedule.Room</td>
+                                    </tr>
+                                }
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -33,3 +38,6 @@
         </div>
     </div>
 </section>
+@section Styles {
+    <link href="@Url.Content("~/css/Schedule/Index.css")" rel="stylesheet" type="text/css" />
+}

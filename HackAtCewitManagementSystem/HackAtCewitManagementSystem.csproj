@@ -29,6 +29,9 @@
     <Folder Include="Views\Videos\" />
     <Folder Include="Models\CheckinModels\" />
     <Folder Include="Views\Checkin\" />
+    <Folder Include="wwwroot\css\Faq\" />
+    <Folder Include="wwwroot\css\Resources\" />
+    <Folder Include="wwwroot\css\Schedule\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\DaysController.cs" />

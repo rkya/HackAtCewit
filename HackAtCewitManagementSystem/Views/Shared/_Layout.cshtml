@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HackAtCewitManagementSystem</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/images/branding/apple-touch-icon-144x144-precomposed.png" />
+    @RenderSection("Styles", false)
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -78,11 +79,11 @@
     </div>
     <div class="container body-wrapper">
         <div class="container body-content">
-            <div class="branding-container">
+            @*<div class="branding-container">
                 <div class="event-container">
                     <img class="event-image" src="~/images/HackCEWITStackBlack_NoDate.png" />
                 </div>
-            </div>
+            </div>*@
             @RenderBody()
         </div>
     </div>

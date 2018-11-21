@@ -16,23 +16,32 @@
                     @model List<Faq>
                     @foreach (var faq in Model)
                     {
-                        <div class="section-heading">
-                            <h3>@faq.Question</h3>
-                        </div>
-                        @if (this.User.IsInRole("admin"))
-                        {
-                            <div>
-                                <input type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Faq", new { id=faq.Id })'" />
-                                <input type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Faq", new { id=faq.Id })'" />
+                        <div>
+                            <div style="float:left;" class="section-heading">
+                                <h3>@faq.Question</h3>
                             </div>
-                        }
-                        <p>
+                            <br/>
+                            @if (this.User.IsInRole("admin"))
+                            {
+                                <div>
+                                    <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Faq", new { id=faq.Id })'" />
+                                    <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Faq", new { id=faq.Id })'" />
+                                </div>
+                            }
+                        </div>
+                        <br />
+                        <br/>
+                        <div style="float:left">
                             @faq.Answer
-                        </p>
-
+                        </div>
+                        <br />
+                        <br />
                     }
                 </div>
             </div>
         </div>
     </div>
 </section>
+@section Styles {
+    <link href="@Url.Content("~/css/Faq/Index.css")" rel="stylesheet" type="text/css" />
+}

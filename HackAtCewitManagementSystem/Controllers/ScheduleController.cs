@@ -20,7 +20,7 @@ namespace HackAtCewitManagementSystem.Controllers
         public IActionResult Index([FromHeader]string sendJson, int? id)
         {
             ViewBag.Active = "Schedule";
-            string sqlString = "SELECT * FROM Schedule";
+            string sqlString = "SELECT * FROM Schedule ORDER BY datetime(StartTime)";
             if (id.HasValue)
             {
                 sqlString += " WHERE Id = " + id.Value;
