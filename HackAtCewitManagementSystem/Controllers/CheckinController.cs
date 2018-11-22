@@ -15,6 +15,7 @@ namespace HackAtCewitManagementSystem.Controllers
         [HttpGet]
         public IActionResult Index([FromHeader]string sendJson)
         {
+            ViewBag.Active = "Checkin";
             List<Checkin> checkins = CheckinDBConnector.GetCheckins();
             List<User> nonCheckedinUsers = CheckinDBConnector.GetNonCheckedinUsers();
 

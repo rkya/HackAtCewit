@@ -24,18 +24,24 @@ namespace HackAtCewitManagementSystem.Utils
                 SqliteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                    var schedule = new Schedule
+                    try
                     {
-                        StartTime = rdr["StartTime"] == DBNull.Value ? "" : (string)rdr["StartTime"],
-                        EndTime = rdr["EndTime"] == DBNull.Value ? "" : (string)rdr["EndTime"],
-                        EventDescription = rdr["EventDescription"] == DBNull.Value ? "" : (string)rdr["EventDescription"],
-                        Room = rdr["Room"] == DBNull.Value ? "" : (string)rdr["Room"],
-                        Id = rdr["Id"] == DBNull.Value ? -1 : (long)rdr["Id"],
-                        EventTitle = rdr["EventTitle"] == DBNull.Value ? "" : (string) rdr["EventTitle"],
-                        Presenter = rdr["Presenter"] == DBNull.Value ? "" : (string) rdr["Presenter"]
-                    };
+                        var schedule = new Schedule
+                        {
+                            StartTime = rdr["StartTime"] == DBNull.Value ? "" : (string)rdr["StartTime"],
+                            EndTime = rdr["EndTime"] == DBNull.Value ? "" : (string)rdr["EndTime"],
+                            EventDescription = rdr["EventDescription"] == DBNull.Value ? "" : (string)rdr["EventDescription"],
+                            Room = rdr["Room"] == DBNull.Value ? "" : (string)rdr["Room"],
+                            Id = rdr["Id"] == DBNull.Value ? -1 : (long)rdr["Id"],
+                            EventTitle = rdr["EventTitle"] == DBNull.Value ? "" : (string)rdr["EventTitle"],
+                            Presenter = rdr["Presenter"] == DBNull.Value ? "" : (string)rdr["Presenter"]
+                        };
+                        schedules.Add(schedule);
+                    }
+                    catch(Exception e) {
+                        Console.WriteLine(e.ToString());
+                    }
 
-                    schedules.Add(schedule);
                 }
             }
 

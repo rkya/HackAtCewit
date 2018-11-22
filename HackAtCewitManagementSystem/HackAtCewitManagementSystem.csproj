@@ -7,7 +7,6 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" PrivateAssets="All" />
-    <PackageReference Include="NUnit" Version="3.11.0" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
@@ -34,6 +33,7 @@
     <Folder Include="wwwroot\css\Schedule\" />
     <Folder Include="Views\Day\" />
     <Folder Include="wwwroot\css\Day\" />
+    <Folder Include="wwwroot\css\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\DaysController.cs" />
