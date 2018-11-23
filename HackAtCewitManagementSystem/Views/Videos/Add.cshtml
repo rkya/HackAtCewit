@@ -1,16 +1,17 @@
 ﻿@{
-    ViewData["Title"] = "Edit Faq";
+    ViewData["Title"] = "Add Video";
 }
-@model Faq
+@model Video
 <section>
     <div class="container">
         <div class="row">
             <div class="col-lg-12 my-auto">
                 <div class="container-fluid text-center">
-                    <h3>Edit Faq</h3>
+                    <h3>Add new Video</h3>
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-lg-12 my-auto">
                 <div class="container-fluid">
@@ -19,21 +20,21 @@
                         <table id="add">
                             <tbody>
                                 <tr>
-                                    <td style="width:30%;">@Html.LabelFor(m => m.Question)</td>
+                                    <td style="width:30%;">@Html.LabelFor(m => m.Title)</td>
                                     <td style="width:70%;">
-                                        @Html.TextBoxFor(m => m.Question, new { @class = "text" })
-                                        @Html.ValidationMessage("Question", "", new { @class = "text-danger" }, "")
+                                        @Html.TextBoxFor(m => m.Title, new { @class = "text" })
+                                        @Html.ValidationMessage("Title", "", new { @class = "text-danger" }, "")
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="width:30%;">@Html.LabelFor(m => m.Answer)</td>
+                                    <td style="width:30%;">@Html.LabelFor(m => m.Url)</td>
                                     <td style="width:70%;">
-                                        @Html.TextAreaFor(m => m.Answer, new { @class = "text" })
-                                        @Html.ValidationMessage("Answer", "", new { @class = "text-danger" }, "")
+                                        @Html.TextBoxFor(m => m.Url, new { placeholder = "e.g. https://www.youtube.com/embed/i9TRte-Nrz0", @class = "text" })
+                                    @Html.ValidationMessage("Url", "", new { @class = "text-danger" }, "")
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" style="margin: auto;"><input class="button" type="submit" value="Edit" /></td>
+                                    <td colspan="2" style="margin: auto;"><input class="button" type="submit" value="Add" /></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -44,8 +45,9 @@
     </div>
 </section>
 @section Styles {
-    <link href="@Url.Content("~/css/Faq/Add.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/Video/Add.css")" rel="stylesheet" type="text/css" />
 }
+
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }

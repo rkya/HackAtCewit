@@ -12,10 +12,9 @@ using Microsoft.Data.Sqlite;
 
 namespace HackAtCewitManagementSystem.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin, participant")]
     public class LeaderBoardController : Controller
     {
-        [AllowAnonymous]
         [Route("LeaderBoard")]
         public IActionResult Index([FromHeader]string sendJson)
         {

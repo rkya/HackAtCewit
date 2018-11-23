@@ -36,6 +36,7 @@
     <Folder Include="wwwroot\css\Account\" />
     <Folder Include="wwwroot\css\Checkin\" />
     <Folder Include="wwwroot\css\LeaderBoard\" />
+    <Folder Include="wwwroot\css\Video\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\DaysController.cs" />
@@ -43,5 +44,6 @@
   <ItemGroup>
     <Content Remove="Views\Resources\Edit.cshtml" />
     <Content Remove="Views\Schedule\Edit.cshtml" />
+    <Content Remove="Views\Videos\Edit.cshtml" />
   </ItemGroup>
 </Project>

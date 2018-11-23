@@ -94,7 +94,18 @@
                                 <li class="dropdown-content"><a href="~/Day/2019/02/18">Feb 18</a></li>
                             </ul>
                         </ul>
-                        <li class="@(ViewBag.Active=="Video"? "active" : "")"><a asp-area="" asp-controller="Videos" asp-action="Index" asp-route-id="">VIDEO</a></li>
+                        @*<li class="@(ViewBag.Active=="Video"? "active" : "")"><a asp-area="" asp-controller="Videos" asp-action="Index" asp-route-id="">VIDEO</a></li>*@
+                        <ul class="nav navbar-nav">
+                            <li id="videos" class="@(ViewBag.Active=="Video"? "active" : "")"><a asp-area="" asp-controller="Videos" asp-action="Index" asp-route-id="">VIDEO</a></li><br />
+                            <ul class="nav navbar-nav">
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <li class="dropdown-content">
+                                        <a asp-area="" asp-controller="Videos" asp-action="Add" asp-route-id="">Add</a>
+                                    </li>
+                                }
+                            </ul>
+                        </ul>
                         @*<li class="@(ViewBag.Active=="Resources"? "active" : "")"><a asp-area="" asp-controller="Resources" asp-action="Index" asp-route-id="">RESOURCES</a></li>*@
                         <ul class="nav navbar-nav">
                             <li id="resources" class="@(ViewBag.Active=="Resources"? "active" : "")"><a asp-area="" asp-controller="Resources" asp-action="Index" asp-route-id="">RESOURCES</a></li></br>
@@ -107,7 +118,10 @@
                                 }
                             </ul>
                         </ul>
-                        <li class="@(ViewBag.Active=="LeaderBoard"? "active" : "")"><a asp-area="" asp-controller="LeaderBoard" asp-action="Index" asp-route-id="">LEADERBOARD</a></li>
+                        @if (User.IsInRole("admin") || User.IsInRole("participant"))
+                        {
+                            <li class="@(ViewBag.Active == "LeaderBoard" ? "active" : "")"><a asp-area="" asp-controller="LeaderBoard" asp-action="Index" asp-route-id="">LEADERBOARD</a></li>
+                        }
                         @if (User.IsInRole("admin"))
                         {
                             <li class="@(ViewBag.Active=="Checkin"? "active" : "")"><a asp-area="" asp-controller="Checkin" asp-action="Index" asp-route-id="">CHECKIN</a></li>

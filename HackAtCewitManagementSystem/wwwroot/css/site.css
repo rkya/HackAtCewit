@@ -68,12 +68,12 @@ padding-bottom: 15px;*/
     color: white;
 }
 
-#faq.active, #resources.active, #schedule.active, .test.active {
+#faq.active, #resources.active, #schedule.active, #videos.active, .test.active {
     background-color: #a00;
     color: white;
 }
 
-#faq, #resources, #schedule, .test {
+#faq, #resources, #schedule, #videos, .test {
     font-family: 'Effra W01 Bold','Arial',sans-serif;
     text-transform: uppercase;
     font-weight: normal;
@@ -83,7 +83,7 @@ padding-bottom: 15px;*/
     color: white;
 }
 
-#faq a:hover, #resources a:hover, #schedule a:hover, .test a:hover {
+#faq a:hover, #resources a:hover, #schedule a:hover, #videos a:hover, .test a:hover {
     font-family: 'Effra W01 Bold','Arial',sans-serif;
     text-transform: uppercase;
     font-weight: normal;
@@ -94,7 +94,7 @@ padding-bottom: 15px;*/
     color: white;
 }
 
-#faq:hover, #resources:hover, #schedule:hover, .test:hover {
+#faq:hover, #resources:hover, #schedule:hover, #videos:hover, .test:hover {
     background-color: #a00;
     color: white;
 }
