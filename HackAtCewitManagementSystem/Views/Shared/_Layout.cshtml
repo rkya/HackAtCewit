@@ -107,7 +107,7 @@
                                 }
                             </ul>
                         </ul>
-                        <li class="@(ViewBag.Active=="Leaderboard"? "active" : "")"><a asp-area="" asp-controller="LeaderBoard" asp-action="Index" asp-route-id="">LEADERBOARD</a></li>
+                        <li class="@(ViewBag.Active=="LeaderBoard"? "active" : "")"><a asp-area="" asp-controller="LeaderBoard" asp-action="Index" asp-route-id="">LEADERBOARD</a></li>
                         @if (User.IsInRole("admin"))
                         {
                             <li class="@(ViewBag.Active=="Checkin"? "active" : "")"><a asp-area="" asp-controller="Checkin" asp-action="Index" asp-route-id="">CHECKIN</a></li>

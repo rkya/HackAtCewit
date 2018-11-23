@@ -17,7 +17,7 @@
                     @foreach (var faq in Model)
                     {
                         <div>
-                            <div style="float:left;" class="section-heading">
+                            <div style="float:left; text-align: justify;" class="section-heading">
                                 <h3>@faq.Question</h3>
                             </div>
                             <br/>
@@ -31,13 +31,15 @@
                         </div>
                         <br />
                         <br/>
-                        <div style="float:left">
+                        <div style="float:left; text-align: justify;">
                             @faq.Answer
                         </div>
                         <br />
                         <br />
                     }
                 </div>
+                <br/>
+                <br/>
             </div>
         </div>
     </div>

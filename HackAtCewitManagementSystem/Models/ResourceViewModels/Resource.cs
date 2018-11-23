@@ -10,10 +10,15 @@ namespace HackAtCewitManagementSystem.Models
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class Resource
     {
+        [Display(Name = "Provider")]
         public string ProviderName { get; set; }
 
+        [Required(ErrorMessage = "Please enter the resource title.")]
+        [Display(Name = "Title")]
         public string Title { get; set; }
 
+        [Required(ErrorMessage = "Please enter the resource URL.")]
+        [Display(Name = "Link")]
         public string Link { get; set; }
 
         public string Description { get; set; }

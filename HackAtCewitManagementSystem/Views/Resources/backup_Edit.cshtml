@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Edit Resource";
+}
+@model Resource
+<section class="faq" id="faq">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 my-auto">
+                <div class="container-fluid">
+                    <h3>Edit Resource</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 my-auto">
+                <div class="container-fluid">
+                    @using (Html.BeginForm())
+                    {
+                        <div>
+                            @Html.LabelFor(m => m.Title)
+                            @Html.TextBoxFor(m => m.Title)
+                        </div>
+                        <div>
+                            @Html.LabelFor(m => m.Link)
+                            @Html.TextBoxFor(m => m.Link)
+                        </div>
+                        <div>
+                            @Html.LabelFor(m => m.Description)
+                            @Html.TextBoxFor(m => m.Description)
+                        </div>
+                        <div>
+                            @Html.LabelFor(m => m.ProviderName)
+                            @Html.TextBoxFor(m => m.ProviderName)
+                        </div>
+                        <input type="submit" value="Edit" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

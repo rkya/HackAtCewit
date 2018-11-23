@@ -17,8 +17,8 @@
                         @model List<Resource>
                         @foreach (var resource in Model)
                         {
-                            <tr>
-                                <td class="section-heading" style="float:left;">
+                            <tr style="vertical-align: middle;">
+                                <td class="section-heading" style="float:left; vertical-align: middle;">
                                     <a target="_blank" href="@resource.Link">@resource.Title</a>
                                 </td>
                                 @if (this.User.IsInRole("admin"))
@@ -30,7 +30,7 @@
                                 }
                             </tr>
                             <tr>
-                                <td colspan="2">
+                                <td colspan="2" style="padding: 0px 0px 40px 0px;">
                                     @resource.Description
                                 </td>
                             </tr>

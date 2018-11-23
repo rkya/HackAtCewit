@@ -20,53 +20,53 @@
                         <table id="add">
                             <tbody>
                                 <tr>
-                                    <td style="width:25%;">@Html.LabelFor(m => m.EventTitle)</td>
-                                    <td style="width:75%;">
+                                    <td style="width:30%;">@Html.LabelFor(m => m.EventTitle)</td>
+                                    <td style="width:70%;">
                                         @Html.TextBoxFor(m => m.EventTitle, new { @class = "text" })
-                                    @Html.ValidationMessage("EventTitle", "", new { @class = "text-danger" }, "")
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width:25%;">@Html.LabelFor(m => m.EventDescription)</td>
-                                <td style="width:75%;">
-                                    @Html.TextBoxFor(m => m.EventDescription, new { @class = "text" })
-                                @Html.ValidationMessage("EventDescription", "", new { @class = "text-danger" }, "")
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width:25%;">@Html.LabelFor(m => m.StartTime)</td>
-                            <td style="width:75%;">
-                                @Html.TextBoxFor(m => m.StartTime, new { placeholder = "yyyy", @class = "text" })
-                            @Html.ValidationMessage("StartTime", "", new { @class = "text-danger" }, "")
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width:25%;">@Html.LabelFor(m => m.EndTime)</td>
-                        <td style="width:75%;">
-                            @Html.TextBoxFor(m => m.EndTime, new { @class = "text" })
-                        @Html.ValidationMessage("EndTime", "", new { @class = "text-danger" }, "")
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width:25%;">@Html.LabelFor(m => m.Room)</td>
-                    <td style="width:75%;">
-                        @Html.TextBoxFor(m => m.Room, new { @class = "text" })
-                    @Html.ValidationMessage("Room", "", new { @class = "text-danger" }, "")
-                </td>
-            </tr>
-            <tr>
-                <td style="width:25%;">@Html.LabelFor(m => m.Presenter)</td>
-                <td style="width:75%;">
-                    @Html.TextBoxFor(m => m.Presenter, new { @class = "text" })
-                @Html.ValidationMessage("Presenter", "", new { @class = "text-danger" }, "")
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2"><input class="button" type="submit" value="Add" /></td>
-        </tr>
-    </tbody>
-</table>
-}
+                                        @Html.ValidationMessage("EventTitle", "", new { @class = "text-danger" }, "")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30%;">@Html.LabelFor(m => m.EventDescription)</td>
+                                    <td style="width:70%;">
+                                        @Html.TextAreaFor(m => m.EventDescription, new { @class = "text" })
+                                        @Html.ValidationMessage("EventDescription", "", new { @class = "text-danger" }, "")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30%;">@Html.LabelFor(m => m.StartTime)</td>
+                                    <td style="width:70%;">
+                                        @Html.TextBoxFor(m => m.StartTime, new { placeholder = "yyyy-mm-dd hh:mm:ss", @class = "text" })
+                                        @Html.ValidationMessage("StartTime", "", new { @class = "text-danger" }, "")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30%;">@Html.LabelFor(m => m.EndTime)</td>
+                                    <td style="width:70%;">
+                                        @Html.TextBoxFor(m => m.EndTime, new { placeholder = "yyyy-mm-dd hh:mm:ss", @class = "text" })
+                                        @Html.ValidationMessage("EndTime", "", new { @class = "text-danger" }, "")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30%;">@Html.LabelFor(m => m.Room)</td>
+                                    <td style="width:70%;">
+                                        @Html.TextBoxFor(m => m.Room, new { @class = "text" })
+                                        @Html.ValidationMessage("Room", "", new { @class = "text-danger" }, "")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30%;">@Html.LabelFor(m => m.Presenter)</td>
+                                    <td style="width:70%;">
+                                        @Html.TextBoxFor(m => m.Presenter, new { @class = "text" })
+                                        @Html.ValidationMessage("Presenter", "", new { @class = "text-danger" }, "")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="margin: auto;"><input class="button" type="submit" value="Add" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
                 </div>
             </div>
         </div>

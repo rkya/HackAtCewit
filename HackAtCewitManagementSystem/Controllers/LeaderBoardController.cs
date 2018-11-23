@@ -19,7 +19,7 @@ namespace HackAtCewitManagementSystem.Controllers
         [Route("LeaderBoard")]
         public IActionResult Index([FromHeader]string sendJson)
         {
-            //ViewBag.Active = "Schedule";
+            ViewBag.Active = "LeaderBoard";
             string sqlString = "SELECT * FROM LeaderBoard ORDER BY Score DESC";
             var board = LeaderBoardDBConnector.GetLeaderBoard(sqlString);
 

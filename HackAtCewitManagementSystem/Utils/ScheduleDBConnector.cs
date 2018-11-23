@@ -56,7 +56,7 @@ namespace HackAtCewitManagementSystem.Utils
             {
                 conn.Open();
 
-                SqliteCommand cmd = new SqliteCommand("SELECT * FROM Schedule WHERE Id = " + id, conn);
+                SqliteCommand cmd = new SqliteCommand("SELECT * FROM Schedule WHERE Id = " + id + " ORDER BY StartTime", conn);
 
                 SqliteDataReader rdr = cmd.ExecuteReader();
 

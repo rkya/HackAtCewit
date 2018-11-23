@@ -1,6 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Checkin";
 }
+@model UserCheckinInfo
+
 <section class="checkin text-center" id="checkin">
     <div class="container checkin">
         <div class="row">
@@ -8,41 +10,68 @@
                 <hr>
                 <div class="container">
                     <div class="tab">
-                        @model UserCheckinInfo
-                        <h1>Checkin</h1>
-                        <table>
-                            <tr>
-                                <th>Username</th>
-                                <th>Status</th>
-                            </tr>
-                            @foreach (var user in Model.nonCheckedinUsers)
-                            {
-                                <tr>
-                                    <td>@user.Username</td>
-                                    <td>
-                                        <input type="button" value="Checkin" onclick="location.href='@Url.Action("Add", "Checkin", new { id=user.Username })'" />
-                                    </td>
-                                </tr>
-                            }
-                        </table>
-                        <table>
-                            <tr>
-                                <th>Username</th>
-                                <th>Checkedin By</th>
-                                <th>Timestamp</th>
-                            </tr>
-                            @foreach (var checkin in Model.checkins)
-                            {
-                                <tr>
-                                    <td>@checkin.participant.Username</td>
-                                    <td>@checkin.admin.Username</td>
-                                    <td>@checkin.timestamp</td>
-                                </tr>
-                            }
-                        </table>
+                        @{int RowNo = 0;}
+                        @if (Model.nonCheckedinUsers.Count > 0)
+                        {
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Username</td>
+                                        <td>Action</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{RowNo = 0;}
+                                    @foreach (var user in Model.nonCheckedinUsers)
+                                    {
+                                        <tr class="@(++RowNo % 2 == 1 ? "trDark" : "trLight")">
+                                            <td style="width:70%;">@Html.Raw(user.Username)</td>
+                                            <td style="width:30%;">
+                                                <input class="button" type="button" value="Checkin" onclick="location.href='@Url.Action("Add", "Checkin", new { id=user.Username })'" />
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <br />
+                        }
+
+                        @if (Model.checkins.Count > 0)
+                        {
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Username</td>
+                                        <td>Checkedin By</td>
+                                        <td>Timestamp</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{RowNo = 0;}
+                                    @foreach (var checkin in Model.checkins)
+                                    {
+                                        <tr class="@(++RowNo % 2 == 1 ? "trDark" : "trLight")">
+                                            <td style="width:40%;">@Html.Raw(checkin.participant.Username)</td>
+                                            <td style="width:40%;">@Html.Raw(checkin.admin.Username)</td>
+                                            <td style="width:20%;">@Html.Raw(checkin.timestamp)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        <br />
+                        <br />
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+@section Styles {
+    <link href="@Url.Content("~/css/Checkin/Index.css")" rel="stylesheet" type="text/css" />
+}
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
