@@ -61,8 +61,12 @@
                 <div style="        text-align: center;
         height: 100% !important">
                     <ul class="nav navbar-nav">
-                        <li class="@(ViewBag.Active=="Home"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="">HOME</a></li>
-                        <li class="@(ViewBag.Active=="About"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="About" asp-route-id="">ABOUT</a></li>
+                        <ul id="home" class="nav navbar-nav">
+                            <li class="@(ViewBag.Active=="Home"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="">HOME</a></li>
+                        </ul>
+                        <ul id="about" class="nav navbar-nav">
+                            <li class="@(ViewBag.Active=="About"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="About" asp-route-id="">ABOUT</a></li>
+                        </ul>
                         @*<li class="@(ViewBag.Active=="Faq"? "active" : "")"><a asp-area="" asp-controller="Faq" asp-action="Index" asp-route-id="">FAQ</a></li>*@
                         <ul class="nav navbar-nav">
                             <li id="faq" style="        float: left;" class="@(ViewBag.Active=="Faq"? "active" : "")"><a asp-area="" asp-controller="Faq" asp-action="Index" asp-route-id="">FAQ</a></li><br/>
@@ -120,29 +124,43 @@
                         </ul>
                         @if (User.IsInRole("admin") || User.IsInRole("participant"))
                         {
-                            <li class="@(ViewBag.Active == "LeaderBoard" ? "active" : "")"><a asp-area="" asp-controller="LeaderBoard" asp-action="Index" asp-route-id="">LEADERBOARD</a></li>
+                            <ul class="nav navbar-nav">
+                                <li id="leaderboard" class="@(ViewBag.Active == "LeaderBoard" ? "active" : "")"><a asp-area="" asp-controller="LeaderBoard" asp-action="Index" asp-route-id="">LEADERBOARD</a></li><br />
+                                <ul class="nav navbar-nav">
+                                    @if (User.IsInRole("admin"))
+                                    {
+                                        <li class="dropdown-content">
+                                            <a asp-area="" asp-controller="LeaderBoard" asp-action="Add" asp-route-id="">Add</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </ul>
                         }
                         @if (User.IsInRole("admin"))
                         {
-                            <li class="@(ViewBag.Active=="Checkin"? "active" : "")"><a asp-area="" asp-controller="Checkin" asp-action="Index" asp-route-id="">CHECKIN</a></li>
+                            <ul class="nav navbar-nav">
+                                <li id="checkin" class="@(ViewBag.Active=="Checkin"? "active" : "")"><a asp-area="" asp-controller="Checkin" asp-action="Index" asp-route-id="">CHECKIN</a></li>
+                            </ul>
                         }
 
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li>
-                                <form action="/Account/Logout" method="post">
-                                    @Html.AntiForgeryToken()
-                                    <button style="        background-color: transparent;
-        color: white;
-        border: unset;" type="submit" formmethod="post" name="logout" value="LOGOUT">
-                                        LOGOUT
-                                    </button>
-                                </form>
-                            </li>
+                            <ul class="nav navbar-nav">
+                                <li id="logout">
+                                    <form action="/Account/Logout" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button style="background-color: transparent; border: unset; margin-top: 13px; margin-bottom: 10px;" type="submit" formmethod="post" name="logout" value="LOGOUT">
+                                            LOGOUT
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
                         }
                         else
                         {
-                            <li class="@(ViewBag.Active=="Login"? "active" : "")"><a asp-area="" asp-controller="Account" asp-action="Login">LOGIN</a></li>
+                            <ul class="nav navbar-nav">
+                                <li id="logout" class="@(ViewBag.Active=="Login"? "active" : "")"><a asp-area="" asp-controller="Account" asp-action="Login">LOGIN</a></li>
+                            </ul>
                         }
                     </ul>
                 </div>

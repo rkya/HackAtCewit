@@ -16,6 +16,11 @@
                                     <td>End Time</td>
                                     <td>Title</td>
                                     <td>Room Number</td>
+                                    @if(Model.Count == 1)
+                                    {
+                                        <td>Presenter</td>
+                                    }
+
                                     @if (User.IsInRole("admin"))
                                     {
                                         <td>Actions</td>
@@ -40,6 +45,11 @@
                                         <td>@schedule.EndTime</td>
                                           <td><a href="~/Schedule/@schedule.Id">@schedule.EventTitle</a></td>
                                         <td>@schedule.Room</td>
+                                        @if (Model.Count == 1)
+                                        {
+                                            <td>@schedule.Presenter</td>
+                                        }
+
                                         @if (User.IsInRole("admin"))
                                         {
                                             <td>
@@ -51,7 +61,7 @@
                                     @if (Model.Count == 1)
                                     {
                                         <tr class="@(++RowNo % 2 == 1 ? "trDark" : "trLight")">
-                                            <td colspan="@(User.IsInRole("admin")? "5" : "4")" style="text-align: justify; padding: 20px;">@schedule.EventDescription</td>
+                                            <td colspan="@(User.IsInRole("admin")? "6" : "5")" style="text-align: justify; padding: 20px;">@schedule.EventDescription</td>
                                         </tr>
                                     }
                                 }

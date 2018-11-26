@@ -13,9 +13,14 @@
                             <table>
                                 <thead>
                                     <tr>
+                                        <th>Rank</th>
                                         <th>Username</th>
                                         <th>Score</th>
                                         <th>LastUpdated</th>
+                                        @if(User.IsInRole("admin"))
+                                        {
+                                            <th>Action</th>
+                                        }
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -23,9 +28,17 @@
                                     @foreach (var position in Model)
                                     {
                                         <tr class="@(++RowNo % 2 == 1 ? "trDark" : "trLight")">
-                                            <td style="width: 50%;">@position.Username</td>
-                                            <td style="width: 20%;">@position.Score</td>
-                                            <td style="width: 30%;">@position.LastUpdated</td>
+                                            <td style="width: 10%;">@RowNo</td>
+                                            <td>@position.Username</td>
+                                            <td style="width: 10%;">@position.Score</td>
+                                            <td style="width: 15%;">@position.LastUpdated</td>
+                                            @if (this.User.IsInRole("admin"))
+                                            {
+                                                <td style="width: 30%;">
+                                                    <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "LeaderBoard", new { id=position.Username })'" />
+                                                    <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "LeaderBoard", new { id=position.Username })'" />
+                                                </td>
+                                            }
                                         </tr>
                                     }
                                 </tbody>
@@ -37,7 +50,6 @@
         </div>
     </div>
 </section>
-
 @section Styles {
     <link href="@Url.Content("~/css/LeaderBoard/Index.css")" rel="stylesheet" type="text/css" />
 }

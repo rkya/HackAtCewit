@@ -1,0 +1,28 @@
+﻿.button {
+    font-family: inherit;
+    text-decoration: none;
+    color: #900;
+    border-color: #900 !important;
+    display: inline-block;
+    font-family: "Effra W01", "Arial", sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding: 9px 30px;
+    text-decoration: none !important;
+    cursor: pointer;
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+    border-width: 2px;
+    border-style: solid;
+    text-align: center;
+    line-height: 1;
+    height: 40px;
+    margin: 6px 0px 6px 0px;
+}
+
+.button:hover {
+    background-color: #900;
+    color: white;
+}
+    

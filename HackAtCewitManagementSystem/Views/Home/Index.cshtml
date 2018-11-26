@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "HACK@CEWIT";
 }
-
+<br />
 <h2>Center of Excellence in Wireless and Information Technology at Stony Brook University </h2>
 <h3>Save the date! February 16-18, 2019</h3>
 <div style="position: relative;" class="row">
@@ -14,5 +14,14 @@
         <img class="video-overlay-text" src="~/images/HackCEWITStackWhite_NoDate.png" alt="Overlaid image of Hack at CEWIT Stacked Logo Black">
     </div>
 </div>
+<br />
 <div>
+    <input class="button" type="button" value="Register" onclick="location.href='@Url.Action("Register", "Account")'" />
+    <input class="button" type="button" value="Sponsor" onclick="location.href='@Url.Action("Index", "Home")'" />
 </div>
+<br />
+<br />
+
+@section Styles {
+    <link href="@Url.Content("~/css/Home/Index.css")" rel="stylesheet" type="text/css" />
+}

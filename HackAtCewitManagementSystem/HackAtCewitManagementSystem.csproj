@@ -37,6 +37,7 @@
     <Folder Include="wwwroot\css\Checkin\" />
     <Folder Include="wwwroot\css\LeaderBoard\" />
     <Folder Include="wwwroot\css\Video\" />
+    <Folder Include="wwwroot\css\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\DaysController.cs" />
