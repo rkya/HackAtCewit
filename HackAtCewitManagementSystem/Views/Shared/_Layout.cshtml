@@ -61,11 +61,11 @@
                 <div style="        text-align: center;
         height: 100% !important">
                     <ul class="nav navbar-nav">
-                        <ul id="home" class="nav navbar-nav">
-                            <li class="@(ViewBag.Active=="Home"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="">HOME</a></li>
+                        <ul class="nav navbar-nav">
+                            <li id="home" class="@(ViewBag.Active=="Home"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="">HOME</a></li>
                         </ul>
-                        <ul id="about" class="nav navbar-nav">
-                            <li class="@(ViewBag.Active=="About"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="About" asp-route-id="">ABOUT</a></li>
+                        <ul class="nav navbar-nav">
+                            <li id="about" class="@(ViewBag.Active=="About"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="About" asp-route-id="">ABOUT</a></li>
                         </ul>
                         @*<li class="@(ViewBag.Active=="Faq"? "active" : "")"><a asp-area="" asp-controller="Faq" asp-action="Index" asp-route-id="">FAQ</a></li>*@
                         <ul class="nav navbar-nav">

@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="UnitTests\" />
-    <Folder Include="UnitTests\Controllers\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +21,7 @@
     <Compile Remove="Program.cs" />
     <Compile Remove="Startup.cs" />
     <Compile Remove="UnitTests\Controllers\HomeController.cs" />
+    <Compile Remove="UnitTests\Controllers\HomeControllerTest %28copy%29.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HackAtCewitManagementSystem\HackAtCewitManagementSystem.csproj" />
