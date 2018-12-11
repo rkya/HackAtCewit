@@ -28,15 +28,9 @@ namespace HackAtCewitManagementSystem
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                   options.UseSqlite("Data Source=test.db"));
-<<<<<<< HEAD
 
-            /*services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-*/
-=======
             //services.AddDbContext<ApplicationDbContext>(options =>
             //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
->>>>>>> 18-add-all-api-endpoints-and-make-corresponding-changes-in-the-database
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HackAtCewitManagementSystem.Models;
 using HackAtCewitManagementSystem.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.Sqlite;
 
@@ -11,8 +12,10 @@ using Microsoft.Data.Sqlite;
 
 namespace HackAtCewitManagementSystem.Controllers
 {
+    [Authorize]
     public class DayController : Controller
     {
+        [AllowAnonymous]
         [Route("Day/{year}/{month}/{day}")]
         public IActionResult Index(int year, int month, int day, [FromHeader]string sendJson)
         {
