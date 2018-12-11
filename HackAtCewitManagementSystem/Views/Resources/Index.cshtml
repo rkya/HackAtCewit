@@ -16,18 +16,19 @@
                     @model List<Resource>
                     @foreach (var resource in Model)
                     {
-
-                    <div class="section-heading">
-                        <a target="_blank" href="@resource.Link">@resource.Title</a>
-                    </div>
-                    <div>
-                        <input type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Resources", new { id=resource.Id })'" />
-                        <input type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Resources", new { id=resource.Id })'" />
-                    </div>
-                    <p>
-                        @resource.Description
-                    </p>
-
+                        <div class="section-heading">
+                            <a target="_blank" href="@resource.Link">@resource.Title</a>
+                        </div>
+                        @if (this.User.IsInRole("admin"))
+                        {
+                            <div>
+                                <input type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Resources", new { id = resource.Id })'" />
+                                <input type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Resources", new { id = resource.Id })'" />
+                            </div>
+                        }
+                        <p>
+                            @resource.Description
+                        </p>
                     }
                 </div>
             </div>
