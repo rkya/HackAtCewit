@@ -23,8 +23,12 @@
     <Folder Include="Views\Faq\" />
     <Folder Include="Models\VideoViewModels\" />
     <Folder Include="Models\ResourceViewModels\" />
+    <Folder Include="Views\Resources\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\DaysController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Resources\Edit.cshtml" />
   </ItemGroup>
 </Project>

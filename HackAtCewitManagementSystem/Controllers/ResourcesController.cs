@@ -13,7 +13,7 @@ using Microsoft.Data.Sqlite;
 namespace HackAtCewitManagementSystem.Controllers
 {
     [Authorize]
-    public class ResourceController : Controller
+    public class ResourcesController : Controller
     {
         [AllowAnonymous]
         [Route("Resources/{id?}")]
@@ -32,6 +32,58 @@ namespace HackAtCewitManagementSystem.Controllers
             var eventList = ResourceDBConnector.GetResources(sqlString);
 
             return sendJson != null && sendJson.Equals("True") ? Json(eventList) : (IActionResult)View(eventList);
+        }
+
+        [HttpPost]
+        [Route("Resources/Add")]
+        public IActionResult Add(Resource resource)
+        {
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine(resource.Title);
+            Console.WriteLine(resource.Link);
+            Console.WriteLine(resource.Description);
+            Console.WriteLine(resource.ProviderName);
+
+            ResourceDBConnector.Create(resource);
+
+            return Redirect("/Resources");
+        }
+
+        [HttpGet]
+        [Route("Resources/Add")]
+        public IActionResult Add()
+        {
+            return View(new Resource());
+        }
+
+        [AcceptVerbs("POST", "PUT")]
+        [Route("Resources/Edit/{id}")]
+        public IActionResult Edit(Resource resource, int id)
+        {
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine(resource.Title);
+            Console.WriteLine(resource.Link);
+            Console.WriteLine(resource.Description);
+            Console.WriteLine(resource.ProviderName);
+
+            ResourceDBConnector.Update(resource);
+
+            return Redirect("/Resources");
+        }
+
+        [HttpGet]
+        [Route("Resources/Edit/{id}")]
+        public IActionResult Edit(int id)
+        {
+            return View(ResourceDBConnector.GetResource(id));
+        }
+
+        [AcceptVerbs("DELETE", "GET")]
+        [Route("Resources/Delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            ResourceDBConnector.Delete(id);
+            return Redirect("/Resources");
         }
     }
 }
