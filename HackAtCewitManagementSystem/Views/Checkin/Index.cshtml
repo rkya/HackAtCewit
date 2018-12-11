@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Checkin";
+}
+<section class="checkin text-center" id="checkin">
+    <div class="container checkin">
+        <div class="row">
+            <div class="col-md-12 mx-auto">
+                <hr>
+                <div class="container">
+                    <div class="tab">
+                        @model UserCheckinInfo
+                        <h1>Checkin</h1>
+                        <table>
+                            <tr>
+                                <th>Username</th>
+                                <th>Status</th>
+                            </tr>
+                            @foreach (var user in Model.nonCheckedinUsers)
+                            {
+                                <tr>
+                                    <td>@user.Username</td>
+                                    <td>
+                                        <input type="button" value="Checkin" onclick="location.href='@Url.Action("Add", "Checkin", new { id=user.Username })'" />
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                        <table>
+                            <tr>
+                                <th>Username</th>
+                                <th>Checkedin By</th>
+                                <th>Timestamp</th>
+                            </tr>
+                            @foreach (var checkin in Model.checkins)
+                            {
+                                <tr>
+                                    <td>@checkin.participant.Username</td>
+                                    <td>@checkin.admin.Username</td>
+                                    <td>@checkin.timestamp</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

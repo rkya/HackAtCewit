@@ -13,25 +13,37 @@
         <div class="row">
             <div class="col-lg-12 my-auto">
                 <div class="container-fluid">
-                    @model List<Resource>
-                    @foreach (var resource in Model)
-                    {
-                        <div class="section-heading">
-                            <a target="_blank" href="@resource.Link">@resource.Title</a>
-                        </div>
-                        @if (this.User.IsInRole("admin"))
+                    <table>
+                        @model List<Resource>
+                        @foreach (var resource in Model)
                         {
-                            <div>
-                                <input type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Resources", new { id = resource.Id })'" />
-                                <input type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Resources", new { id = resource.Id })'" />
-                            </div>
+                            <tr>
+                                <td class="section-heading" style="float:left;">
+                                    <a target="_blank" href="@resource.Link">@resource.Title</a>
+                                </td>
+                                @if (this.User.IsInRole("admin"))
+                                {
+                                    <td>
+                                        <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Resources", new { id = resource.Id })'" />
+                                        <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Resources", new { id = resource.Id })'" />
+                                    </td>
+                                }
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    @resource.Description
+                                </td>
+                            </tr>
                         }
-                        <p>
-                            @resource.Description
-                        </p>
-                    }
+
+                    </table>
+                    <br/>
+                    <br/>
                 </div>
             </div>
         </div>
     </div>
 </section>
+@section Styles {
+    <link href="@Url.Content("~/css/Resources/Index.css")" rel="stylesheet" type="text/css" />
+}

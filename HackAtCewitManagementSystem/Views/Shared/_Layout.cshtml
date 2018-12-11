@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HackAtCewitManagementSystem</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/images/branding/apple-touch-icon-144x144-precomposed.png" />
+    @RenderSection("Styles", false)
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -50,12 +51,12 @@
             <div style="height: 100% !important" class="navbar-collapse collapse">
                 <div style="text-align: center; height: 100% !important">
                     <ul class="nav navbar-nav">
-                        <li class="@(ViewBag.Active=="Home"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Index">HOME</a></li>
-                        <li class="@(ViewBag.Active=="About"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="About">ABOUT</a></li>
-                        <li class="@(ViewBag.Active=="Faq"? "active" : "")"><a asp-area="" asp-controller="Faq" asp-action="Index">FAQ</a></li>
-                        <li class="@(ViewBag.Active=="Schedule"? "active" : "")"><a asp-area="" asp-controller="Schedule" asp-action="Index">SCHEDULE</a></li>
-                        <li class="@(ViewBag.Active=="Video"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Video">VIDEO</a></li>
-                        <li class="@(ViewBag.Active=="Resources"? "active" : "")"><a asp-area="" asp-controller="Resources" asp-action="Index">RESOURCES</a></li>
+                        <li class="@(ViewBag.Active=="Home"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="">HOME</a></li>
+                        <li class="@(ViewBag.Active=="About"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="About" asp-route-id="">ABOUT</a></li>
+                        <li class="@(ViewBag.Active=="Faq"? "active" : "")"><a asp-area="" asp-controller="Faq" asp-action="Index" asp-route-id="">FAQ</a></li>
+                        <li class="@(ViewBag.Active=="Schedule"? "active" : "")"><a asp-area="" asp-controller="Schedule" asp-action="Index" asp-route-id="">SCHEDULE</a></li>
+                        <li class="@(ViewBag.Active=="Video"? "active" : "")"><a asp-area="" asp-controller="Videos" asp-action="Index" asp-route-id="">VIDEO</a></li>
+                        <li class="@(ViewBag.Active=="Resources"? "active" : "")"><a asp-area="" asp-controller="Resources" asp-action="Index" asp-route-id="">RESOURCES</a></li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li>
@@ -78,11 +79,11 @@
     </div>
     <div class="container body-wrapper">
         <div class="container body-content">
-            <div class="branding-container">
+            @*<div class="branding-container">
                 <div class="event-container">
                     <img class="event-image" src="~/images/HackCEWITStackBlack_NoDate.png" />
                 </div>
-            </div>
+            </div>*@
             @RenderBody()
         </div>
     </div>

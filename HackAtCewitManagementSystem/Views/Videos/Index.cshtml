@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Videos";
+}
+<div>
+    <center>
+        @model List<Video>
+        <h1>Videos</h1>
+        <table>
+            @{
+                var list = Model.ToList();
+                int i = 0;
+                while (i < Model.Count)
+                {
+                    <tr>
+                        <td style="padding: 20px">
+                            @if (i < Model.Count)
+                            {
+                                <iframe width="300" height="200" src="@list[i].Url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+                                i++;
+                            }
+                        </td>
+                        <td style="padding: 20px">
+                            @if (i < Model.Count)
+                            {
+                                <iframe width="300" height="200" src="@list[i].Url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+                                i++;
+                            }
+                        </td>
+                        <td style="padding: 20px">
+                            @if (i < Model.Count)
+                            {
+                                <iframe width="300" height="200" src="@list[i].Url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+                                i++;
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+
+
+            @*@foreach (var video in Model.ToList())
+                {
+                    <tr>
+                        <td>
+                            <iframe width="300" height="200" src="https://www.youtube.com/embed/i9TRte-Nrz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+                        </td>
+                        <td>
+                            <iframe width="300" height="200" src="https://www.youtube.com/embed/i9TRte-Nrz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+                        </td>
+                        <td>
+                            <iframe width="300" height="200" src="https://www.youtube.com/embed/i9TRte-Nrz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+                        </td>
+                    </tr>
+                }*@
+        </table>
+
+    </center>
+</div>

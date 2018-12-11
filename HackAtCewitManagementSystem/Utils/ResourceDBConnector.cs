@@ -15,7 +15,7 @@ namespace HackAtCewitManagementSystem.Utils
         {
             List<Resource> resources = new List<Resource>();
 
-            using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
+            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
             {
                 conn.Open();
 
@@ -44,7 +44,7 @@ namespace HackAtCewitManagementSystem.Utils
         {
             Resource resource = null;
 
-            using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
+            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
             {
                 conn.Open();
 
@@ -82,7 +82,7 @@ namespace HackAtCewitManagementSystem.Utils
 
         private static bool InsertOrUpdate(Resource resource)
         {
-            using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
+            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
             {
                 conn.Open();
                 SqliteCommand insertSQL = new SqliteCommand("INSERT OR REPLACE INTO Resource(Id, Title, Link, Description, ProviderName) VALUES ((SELECT Id FROM Resource WHERE Id = " + resource.Id + "), '" + resource.Title + "', '" + resource.Link + "', '" + resource.Description + "', '" + resource.ProviderName + "')", conn);
@@ -103,7 +103,7 @@ namespace HackAtCewitManagementSystem.Utils
 
         public static bool Delete(int id)
         {
-            using (SqliteConnection conn = new SqliteConnection("Data Source=test.db"))
+            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
             {
                 conn.Open();
                 SqliteCommand deleteSQL = new SqliteCommand("DELETE FROM Resource WHERE Id = " + id, conn);
