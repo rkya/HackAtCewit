@@ -82,7 +82,7 @@ namespace HackAtCewitManagementSystem.Utils
             {
 
                 conn.Open();
-                SqliteCommand insertSQL = new SqliteCommand("INSERT OR REPLACE INTO LeaderBoard(Username, Score, LastUpdated) VALUES ('" + leaderBoard.Username + "', " + leaderBoard.Score + ", datetime('now'))", conn);
+                SqliteCommand insertSQL = new SqliteCommand("INSERT OR REPLACE INTO LeaderBoard(Username, Score, LastUpdated) VALUES ('" + leaderBoard.Username + "', " + leaderBoard.Score + ", datetime('now', 'localtime'))", conn);
 
                 try
                 {
