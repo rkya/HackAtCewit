@@ -24,12 +24,41 @@ namespace HackAtCewitManagementSystem.Controllers
             return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
         }
 
-        [HttpGet]
-        [Route("Checkin/Add/{id}")]
+        //[HttpPost]
+        //[Route("Checkin/Add/{id}")]
+        //[Authorize(Roles = "admin")]
+        //public IActionResult Add(string id, [FromBody]string username)
+        //{
+        //    CheckinDBConnector.Checkin(id, User.Identity.Name);
+        //    return Redirect("/Checkin");
+        //}
+
+        //[HttpGet]
+        //[Route("Checkin/Add")]
+        //[Authorize(Roles = "admin")]
+        //public IActionResult AddGet(string id, [FromBody]string username)
+        //{
+        //    Console.WriteLine("Add get method hit...!!");
+        //    return Redirect("/Checkin");
+        //}
+
+        //[HttpPost]
+        //[Route("Checkin/Add")]
+        //[Authorize(Roles = "admin")]
+        //public IActionResult AddPost(UserCheckinInfo info)
+        //{
+        //    Console.WriteLine("Add post method hit...!!");
+        //    Console.WriteLine(info.usercheckin);
+        //    //Console.WriteLine(info.nonCheckedinUsers.Count);
+        //    return Redirect("/Checkin");
+        //}
+
+        [HttpPost]
+        [Route("Checkin")]
         [Authorize(Roles = "admin")]
-        public IActionResult Add(string id)
+        public IActionResult CheckinUser(User user)
         {
-            CheckinDBConnector.Checkin(id, User.Identity.Name);
+            CheckinDBConnector.Checkin(user.Username, User.Identity.Name);
             return Redirect("/Checkin");
         }
 

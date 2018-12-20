@@ -38,6 +38,8 @@
     <Folder Include="wwwroot\css\LeaderBoard\" />
     <Folder Include="wwwroot\css\Video\" />
     <Folder Include="wwwroot\css\Home\" />
+    <Folder Include="Views\Company\" />
+    <Folder Include="Models\Company\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\DaysController.cs" />

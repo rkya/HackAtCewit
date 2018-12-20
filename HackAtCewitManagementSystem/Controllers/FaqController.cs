@@ -21,21 +21,10 @@ namespace HackAtCewitManagementSystem.Controllers
             return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
         }
 
-        public IActionResult UserTest([FromHeader]string sendJson)
-        {
-            ViewBag.Active = "Faq";
-            var model = FaqDBConnector.GetFaqs();
-            return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
-        }
-
         [HttpPost]
         [Route("Faq/Add")]
         [Authorize(Roles = "admin")]
         public IActionResult Add(Faq faq) {
-            //Console.WriteLine("----------------------------------");
-            //Console.WriteLine(faq.Question);
-            //Console.WriteLine(faq.Answer);
-
             FaqDBConnector.Create(faq);
 
             return Redirect("/Faq");
@@ -49,33 +38,60 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(new Faq());
         }
 
-        [AcceptVerbs("POST", "PUT")]
+        [HttpPost]
         [Route("Faq/Edit/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Edit(Faq faq, int id)
         {
-            //Console.WriteLine("----------------------------------");
-            //Console.WriteLine(faq.Question);
-            //Console.WriteLine(faq.Answer);
-
+            Console.WriteLine(faq.Id);
+            Console.WriteLine(faq.Question);
+            Console.WriteLine(faq.Answer);
+            Console.WriteLine("--------------------");
             FaqDBConnector.Update(faq);
 
             return Redirect("/Faq");
         }
+
+        [HttpPut]
+        [Route("Faq/Edit/{id}")]
+        [Authorize(Roles = "admin")]
+        public IActionResult EditPut(Faq faq, int id)
+        {
+            Console.WriteLine(faq.Id);
+            Console.WriteLine(faq.Question);
+            Console.WriteLine(faq.Answer);
+            Console.WriteLine("--------------------");
+            FaqDBConnector.Update(faq);
+
+            return Redirect("/Faq");
+        }
+
+
+        [HttpDelete]
+        [Route("Faq/Edit/{id}")]
+        [Authorize(Roles = "admin")]
+        public IActionResult EditDelete(Faq faq, int id)
+        {
+            Console.WriteLine(faq.Id);
+            Console.WriteLine(faq.Question);
+            Console.WriteLine(faq.Answer);
+            Console.WriteLine("--------------------");
+            FaqDBConnector.Update(faq);
+
+            return Redirect("/Faq");
+        }
+
 
         [HttpGet]
         [Route("Faq/Edit/{id}")]
         [Authorize(Roles ="admin")]
         public IActionResult Edit(int id)
         {
-            //Console.WriteLine(User.IsInRole("admin"));
-            //Console.WriteLine(User.Identity);
-            //Console.WriteLine(User.Claims);
-            //Console.WriteLine(User.Identities);
+            Console.WriteLine("called the get method again!!");
             return View(FaqDBConnector.GetFaq(id));
         }
 
-        [AcceptVerbs("DELETE", "GET")]
+        [HttpDelete]
         [Route("Faq/Delete/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)

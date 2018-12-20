@@ -9,6 +9,13 @@
                 <div class="container">
                     <div class="tab">
                         @model List<Schedule>
+
+                        @if (Model == null || Model.Count == 0)
+                        {
+                            <h4>Sorry, no schedule available for this day!</h4>
+                        }
+                        else
+                        {
                         <table>
                             <thead>
                                 <tr>
@@ -16,7 +23,7 @@
                                     <td>End Time</td>
                                     <td>Title</td>
                                     <td>Room Number</td>
-                                    @if(Model.Count == 1)
+                                    @if (Model.Count == 1)
                                     {
                                         <td>Presenter</td>
                                     }
@@ -61,12 +68,14 @@
                                     @if (Model.Count == 1)
                                     {
                                         <tr class="@(++RowNo % 2 == 1 ? "trDark" : "trLight")">
-                                            <td colspan="@(User.IsInRole("admin")? "6" : "5")" style="text-align: justify; padding: 20px;">@schedule.EventDescription</td>
+                                            <td colspan="@(User.IsInRole("admin") ? "6" : "5")" style="        text-align: justify;
+        padding: 20px;">@schedule.EventDescription</td>
                                         </tr>
                                     }
                                 }
                             </tbody>
                         </table>
+                                    }
                     </div>
                 </div>
             </div>

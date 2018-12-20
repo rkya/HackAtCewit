@@ -4,6 +4,12 @@
 <div>
     <center>
         @model List<Video>
+        @if (Model == null || Model.Count == 0)
+        {
+            <h4>Sorry, no videos available!</h4>
+        }
+        else
+        {
         <table>
             @{
                 var list = Model.ToList();
@@ -11,43 +17,43 @@
                 while (i < Model.Count)
                 {
                     <tr>
-                        <td style="padding: 20px">
+                        <td style="        padding: 20px">
                             @if (i < Model.Count)
                             {
                                 <iframe width="300" height="200" src="@list[i].Url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
                                 @if (this.User.IsInRole("admin"))
                                 {
                                     <div>
-                                        <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Videos", new { id=list[i].Id })'" />
-                                        <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Videos", new { id=list[i].Id })'" />
+                                        <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Videos", new { id = list[i].Id })'" />
+                                        <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Videos", new { id = list[i].Id })'" />
                                     </div>
                                 }
                                 i++;
                             }
                         </td>
-                        <td style="padding: 20px">
+                        <td style="        padding: 20px">
                             @if (i < Model.Count)
                             {
                                 <iframe width="300" height="200" src="@list[i].Url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
                                 @if (this.User.IsInRole("admin"))
                                 {
                                     <div>
-                                        <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Videos", new { id=list[i].Id })'" />
-                                        <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Videos", new { id=list[i].Id })'" />
+                                        <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Videos", new { id = list[i].Id })'" />
+                                        <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Videos", new { id = list[i].Id })'" />
                                     </div>
                                 }
                                 i++;
                             }
                         </td>
-                        <td style="padding: 20px">
+                        <td style="        padding: 20px">
                             @if (i < Model.Count)
                             {
                                 <iframe width="300" height="200" src="@list[i].Url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
                                 @if (this.User.IsInRole("admin"))
                                 {
                                     <div>
-                                        <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Videos", new { id=list[i].Id })'" />
-                                        <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Videos", new { id=list[i].Id })'" />
+                                        <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Videos", new { id = list[i].Id })'" />
+                                        <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Videos", new { id = list[i].Id })'" />
                                     </div>
                                 }
                                 i++;
@@ -57,7 +63,7 @@
                 }
             }
         </table>
-
+        }
     </center>
 </div>
 

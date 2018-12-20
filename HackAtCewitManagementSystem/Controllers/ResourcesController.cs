@@ -8,8 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.Sqlite;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace HackAtCewitManagementSystem.Controllers
 {
     [Authorize]
@@ -17,6 +15,7 @@ namespace HackAtCewitManagementSystem.Controllers
     {
         [AllowAnonymous]
         [Route("Resources/{id?}")]
+        [HttpGet]
         public IActionResult Index([FromHeader]string sendJson, int? id)
         {
             ViewBag.Active = "Resources";
@@ -39,12 +38,6 @@ namespace HackAtCewitManagementSystem.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Add(Resource resource)
         {
-            //Console.WriteLine("----------------------------------");
-            //Console.WriteLine(resource.Title);
-            //Console.WriteLine(resource.Link);
-            //Console.WriteLine(resource.Description);
-            //Console.WriteLine(resource.ProviderName);
-
             ResourceDBConnector.Create(resource);
 
             return Redirect("/Resources");
@@ -58,17 +51,11 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(new Resource());
         }
 
-        [AcceptVerbs("POST", "PUT")]
+        [HttpPut]
         [Route("Resources/Edit/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Edit(Resource resource, int id)
         {
-            //Console.WriteLine("----------------------------------");
-            //Console.WriteLine(resource.Title);
-            //Console.WriteLine(resource.Link);
-            //Console.WriteLine(resource.Description);
-            //Console.WriteLine(resource.ProviderName);
-
             ResourceDBConnector.Update(resource);
 
             return Redirect("/Resources");
@@ -82,7 +69,7 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(ResourceDBConnector.GetResource(id));
         }
 
-        [AcceptVerbs("DELETE", "GET")]
+        [HttpDelete]
         [Route("Resources/Delete/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)

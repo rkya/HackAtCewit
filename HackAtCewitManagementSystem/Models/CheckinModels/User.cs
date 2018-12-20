@@ -16,5 +16,14 @@ namespace HackAtCewitManagementSystem.Models
         [Required]
         public string Username { get; set; }
 
+        public User() {
+
+        }
+
+        public User(string Id, string Username) {
+            this.Username = Username;
+            this.Id = Id;
+        }
+
     }
 }

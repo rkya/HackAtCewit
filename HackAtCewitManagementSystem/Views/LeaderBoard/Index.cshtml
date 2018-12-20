@@ -10,6 +10,12 @@
                     <div class="tab">
                         @model List<LeaderBoard>
                         <center>
+                        @if (Model == null || Model.Count == 0)
+                        {
+                            <h4>Sorry, leaderboard not available at the moment!</h4>
+                        }
+                        else
+                        {
                             <table>
                                 <thead>
                                     <tr>
@@ -17,7 +23,7 @@
                                         <th>Username</th>
                                         <th>Score</th>
                                         <th>LastUpdated</th>
-                                        @if(User.IsInRole("admin"))
+                                        @if (User.IsInRole("admin"))
                                         {
                                             <th>Action</th>
                                         }
@@ -28,21 +34,22 @@
                                     @foreach (var position in Model)
                                     {
                                         <tr class="@(++RowNo % 2 == 1 ? "trDark" : "trLight")">
-                                            <td style="width: 10%;">@RowNo</td>
+                                            <td style="        width: 10%;">@RowNo</td>
                                             <td>@position.Username</td>
-                                            <td style="width: 10%;">@position.Score</td>
-                                            <td style="width: 15%;">@position.LastUpdated</td>
+                                            <td style="        width: 10%;">@position.Score</td>
+                                            <td style="        width: 15%;">@position.LastUpdated</td>
                                             @if (this.User.IsInRole("admin"))
                                             {
-                                                <td style="width: 30%;">
-                                                    <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "LeaderBoard", new { id=position.Username })'" />
-                                                    <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "LeaderBoard", new { id=position.Username })'" />
+                                                <td style="        width: 30%;">
+                                                    <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "LeaderBoard", new { id = position.Username })'" />
+                                                    <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "LeaderBoard", new { id = position.Username })'" />
                                                 </td>
                                             }
                                         </tr>
                                     }
                                 </tbody>
                             </table>
+                            }
                         </center>
                     </div>
                 </div>

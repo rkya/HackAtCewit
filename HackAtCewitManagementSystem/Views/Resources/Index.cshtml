@@ -6,20 +6,22 @@
         <div class="row">
             <div class="col-lg-12 my-auto">
                 <div class="container-fluid">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 my-auto">
-                <div class="container-fluid">
                     <br />
                     <br />
+                    @model List<Resource>
+                    @if (Model == null || Model.Count == 0)
+                    {
+                            <h4>Sorry, no schedule available for this day!</h4>
+                    }
+                    else
+                    {
                     <table>
-                        @model List<Resource>
+
                         @foreach (var resource in Model)
                         {
-                            <tr style="vertical-align: middle;">
-                                <td class="section-heading" style="float:left; vertical-align: middle;">
+                            <tr style="        vertical-align: middle;">
+                                <td class="section-heading" style="        float: left;
+        vertical-align: middle;">
                                     <a target="_blank" href="@resource.Link">@resource.Title</a>
                                 </td>
                                 @if (this.User.IsInRole("admin"))
@@ -31,13 +33,14 @@
                                 }
                             </tr>
                             <tr>
-                                <td colspan="2" style="padding: 0px 0px 40px 0px;">
+                                <td colspan="2" style="        padding: 0px 0px 40px 0px;">
                                     @resource.Description
                                 </td>
                             </tr>
                         }
 
                     </table>
+                    }
                     <br/>
                     <br/>
                 </div>

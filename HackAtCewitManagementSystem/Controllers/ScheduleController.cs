@@ -15,6 +15,7 @@ namespace HackAtCewitManagementSystem.Controllers
     {
         [AllowAnonymous]
         [Route("Schedule")]
+        [HttpGet]
         public IActionResult Index([FromHeader]string sendJson)
         {
             ViewBag.Active = "Schedule";
@@ -27,6 +28,7 @@ namespace HackAtCewitManagementSystem.Controllers
 
         [AllowAnonymous]
         [Route("Schedule/{id}")]
+        [HttpGet]
         public IActionResult GetSchedule([FromHeader]string sendJson, int id)
         {
             ViewBag.Active = "Schedule";
@@ -56,15 +58,11 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(new Schedule());
         }
 
-        [AcceptVerbs("POST", "PUT")]
+        [HttpPut]
         [Route("Schedule/Edit/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Edit(Schedule schedule, int id)
         {
-            //Console.WriteLine("----------------------------------");
-            //Console.WriteLine(faq.Question);
-            //Console.WriteLine(faq.Answer);
-
             ScheduleDBConnector.Update(schedule);
 
             return Redirect("/Schedule");
@@ -75,14 +73,10 @@ namespace HackAtCewitManagementSystem.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Edit(int id)
         {
-            //Console.WriteLine(User.IsInRole("admin"));
-            //Console.WriteLine(User.Identity);
-            //Console.WriteLine(User.Claims);
-            //Console.WriteLine(User.Identities);
             return View(ScheduleDBConnector.GetSchedule(id));
         }
 
-        [AcceptVerbs("DELETE", "GET")]
+        [HttpDelete]
         [Route("Schedule/Delete/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)

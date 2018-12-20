@@ -15,6 +15,10 @@
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.analyzers" Version="0.10.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    <PackageReference Include="NDbUnit.SqlLite" Version="1.6.8" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.osx" Version="1.1.12" />
+    <PackageReference Include="SQLitePCLRaw.core" Version="1.1.12" />
+    <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.netstandard11" Version="1.1.12" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,5 +29,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HackAtCewitManagementSystem\HackAtCewitManagementSystem.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Data.Sqlite">
+      <HintPath>..\..\..\..\..\..\..\..\..\usr\local\share\dotnet\sdk\NuGetFallbackFolder\microsoft.data.sqlite.core\2.1.0\lib\netstandard2.0\Microsoft.Data.Sqlite.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

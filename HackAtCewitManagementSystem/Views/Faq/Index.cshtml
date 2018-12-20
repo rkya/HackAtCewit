@@ -13,28 +13,39 @@
             <div class="col-lg-12 my-auto">
                 <div class="container-fluid">
                     @model List<Faq>
-                    @foreach (var faq in Model)
+
+                    @if (Model == null || Model.Count == 0)
                     {
-                        <div>
-                            <div style="float:left; text-align: justify;" class="section-heading">
-                                <h3>@faq.Question</h3>
-                            </div>
-                            <br/>
-                            @if (this.User.IsInRole("admin"))
-                            {
-                                <div>
-                                    <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Faq", new { id=faq.Id })'" />
-                                    <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Faq", new { id=faq.Id })'" />
+                        <h4>Sorry, no FAQs available!</h4>
+                    }
+                    else
+                    {
+
+                        @foreach (var faq in Model)
+                        {
+                            <div>
+                                <div style="        float: left;
+            text-align: justify;" class="section-heading">
+                                    <h3>@faq.Question</h3>
                                 </div>
-                            }
-                        </div>
-                        <br />
-                        <br/>
-                        <div style="float:left; text-align: justify;">
-                            @faq.Answer
-                        </div>
-                        <br />
-                        <br />
+                                <br/>
+                                @if (this.User.IsInRole("admin"))
+                                {
+                                    <div>
+                                        <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Faq", new { id = faq.Id })'" />
+                                        <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Faq", new { id = faq.Id })'" />
+                                    </div>
+                                }
+                            </div>
+                            <br />
+                            <br/>
+                            <div style="        float: left;
+            text-align: justify;">
+                                @faq.Answer
+                            </div>
+                            <br />
+                            <br />
+                        }
                     }
                 </div>
                 <br/>

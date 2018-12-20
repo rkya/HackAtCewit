@@ -14,6 +14,7 @@ namespace HackAtCewitManagementSystem.Controllers
     public class HomeController : Controller
     {
         [AllowAnonymous]
+        [HttpGet]
         public IActionResult Index()
         {
             ViewBag.Active = "Home";
@@ -21,6 +22,7 @@ namespace HackAtCewitManagementSystem.Controllers
         }
 
         [AllowAnonymous]
+        [HttpGet]
         public IActionResult About()
         {
             ViewData["Message"] = "Hack@CEWIT is the Center of Excellence in Wireless and Information Technology (CEWIT)'s interdisciplinary IoT-focused hackathon bringing students together for a two-day technical challenge over President's Day Weekend.";
@@ -29,6 +31,7 @@ namespace HackAtCewitManagementSystem.Controllers
         }
 
         [AllowAnonymous]
+        [HttpGet]
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
@@ -37,6 +40,7 @@ namespace HackAtCewitManagementSystem.Controllers
         }
 
         [AllowAnonymous]
+        [HttpGet]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

@@ -7,14 +7,13 @@ using HackAtCewitManagementSystem.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace HackAtCewitManagementSystem.Controllers
 {
     [Authorize(Roles = "admin")]
     public class VideosController : Controller
     {
         [AllowAnonymous]
+        [HttpGet]
         public IActionResult Index([FromHeader]string sendJson)
         {
             ViewBag.Active = "Video";
@@ -38,7 +37,7 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(new Video());
         }
 
-        [AcceptVerbs("POST", "PUT")]
+        [HttpPut]
         [Route("Videos/Edit/{id}")]
         public IActionResult Edit(Video video, int id)
         {
@@ -54,7 +53,7 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(VideoDBConnector.GetVideo(id));
         }
 
-        [AcceptVerbs("DELETE", "GET")]
+        [HttpDelete]
         [Route("Videos/Delete/{id}")]
         public IActionResult Delete(int id)
         {
