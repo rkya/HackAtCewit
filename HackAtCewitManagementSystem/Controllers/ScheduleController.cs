@@ -58,7 +58,7 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(new Schedule());
         }
 
-        [HttpPut]
+        [AcceptVerbs("PUT", "POST")]
         [Route("Schedule/Edit/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Edit(Schedule schedule, int id)
@@ -76,7 +76,7 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(ScheduleDBConnector.GetSchedule(Constants.DATA_SOURCE, id));
         }
 
-        [HttpDelete]
+        [AcceptVerbs("DELETE", "POST")]
         [Route("Schedule/Delete/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)

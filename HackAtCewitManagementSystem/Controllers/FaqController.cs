@@ -38,60 +38,25 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(new Faq());
         }
 
-        [HttpPost]
+        [AcceptVerbs("PUT", "POST")]
         [Route("Faq/Edit/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Edit(Faq faq, int id)
         {
-            Console.WriteLine(faq.Id);
-            Console.WriteLine(faq.Question);
-            Console.WriteLine(faq.Answer);
-            Console.WriteLine("--------------------");
             FaqDBConnector.Update(Constants.DATA_SOURCE, faq);
 
             return Redirect("/Faq");
         }
-
-        [HttpPut]
-        [Route("Faq/Edit/{id}")]
-        [Authorize(Roles = "admin")]
-        public IActionResult EditPut(Faq faq, int id)
-        {
-            Console.WriteLine(faq.Id);
-            Console.WriteLine(faq.Question);
-            Console.WriteLine(faq.Answer);
-            Console.WriteLine("--------------------");
-            FaqDBConnector.Update(Constants.DATA_SOURCE, faq);
-
-            return Redirect("/Faq");
-        }
-
-
-        [HttpDelete]
-        [Route("Faq/Edit/{id}")]
-        [Authorize(Roles = "admin")]
-        public IActionResult EditDelete(Faq faq, int id)
-        {
-            Console.WriteLine(faq.Id);
-            Console.WriteLine(faq.Question);
-            Console.WriteLine(faq.Answer);
-            Console.WriteLine("--------------------");
-            FaqDBConnector.Update(Constants.DATA_SOURCE, faq);
-
-            return Redirect("/Faq");
-        }
-
 
         [HttpGet]
         [Route("Faq/Edit/{id}")]
         [Authorize(Roles ="admin")]
         public IActionResult Edit(int id)
         {
-            Console.WriteLine("called the get method again!!");
             return View(FaqDBConnector.GetFaq(Constants.DATA_SOURCE, id));
         }
 
-        [HttpDelete]
+        [AcceptVerbs("DELETE", "POST")]
         [Route("Faq/Delete/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)

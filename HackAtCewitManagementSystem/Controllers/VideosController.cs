@@ -37,7 +37,7 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(new Video());
         }
 
-        [HttpPut]
+        [AcceptVerbs("PUT", "POST")]
         [Route("Videos/Edit/{id}")]
         public IActionResult Edit(Video video, int id)
         {
@@ -53,7 +53,7 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(VideoDBConnector.GetVideo(Constants.DATA_SOURCE, id));
         }
 
-        [HttpDelete]
+        [AcceptVerbs("DELETE", "POST")]
         [Route("Videos/Delete/{id}")]
         public IActionResult Delete(int id)
         {

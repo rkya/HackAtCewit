@@ -28,7 +28,9 @@
                                 {
                                     <td>
                                         <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Resources", new { id = resource.Id })'" />
-                                        <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Resources", new { id = resource.Id })'" />
+                                        <form class="buttonForm" method="post" action="/Resources/Delete/@resource.Id">
+                                            <input class="button" type="submit" value="Delete" />
+                                        </form>
                                     </td>
                                 }
                             </tr>

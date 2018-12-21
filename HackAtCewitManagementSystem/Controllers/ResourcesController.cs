@@ -51,7 +51,7 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(new Resource());
         }
 
-        [HttpPut]
+        [AcceptVerbs("PUT", "POST")]
         [Route("Resources/Edit/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Edit(Resource resource, int id)
@@ -69,7 +69,7 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(ResourceDBConnector.GetResource(Constants.DATA_SOURCE, id));
         }
 
-        [HttpDelete]
+        [AcceptVerbs("DELETE", "POST")]
         [Route("Resources/Delete/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)

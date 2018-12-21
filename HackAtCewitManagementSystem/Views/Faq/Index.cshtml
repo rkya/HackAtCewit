@@ -20,6 +20,8 @@
                     }
                     else
                     {
+                        <br />
+                        <br />
 
                         @foreach (var faq in Model)
                         {
@@ -33,7 +35,9 @@
                                 {
                                     <div>
                                         <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Faq", new { id = faq.Id })'" />
-                                        <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Faq", new { id = faq.Id })'" />
+                                        <form class="buttonForm" method="post" action="/Faq/Delete/@faq.Id">
+                                            <input class="button" type="submit" value="Delete" />
+                                        </form>
                                     </div>
                                 }
                             </div>
@@ -43,6 +47,9 @@
             text-align: justify;">
                                 @faq.Answer
                             </div>
+                            <br />
+                            <br />
+                            <br />
                             <br />
                             <br />
                         }

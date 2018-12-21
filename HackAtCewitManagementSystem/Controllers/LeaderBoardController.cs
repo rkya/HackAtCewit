@@ -32,7 +32,7 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(LeaderBoardDBConnector.GetUsersNotOnLeaderBoard(Constants.DATA_SOURCE));
         }
 
-        [HttpPut]
+        [AcceptVerbs("PUT", "POST")]
         [Route("LeaderBoard/Edit/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Edit(LeaderBoard leaderBoard, string id)
@@ -43,24 +43,21 @@ namespace HackAtCewitManagementSystem.Controllers
             return Redirect("/LeaderBoard");
         }
 
-        //[HttpPut]
-        //[Route("LeaderBoard/Edit/{id}")]
-        //[Authorize(Roles = "admin")]
-        //public IActionResult Edit(string id)
-        //{
-        //    LeaderBoard user = LeaderBoardDBConnector.GetLeaderBoardRow(id);
-        //    Console.WriteLine(user.Username);
-        //    user.Username = id;
-        //    Console.WriteLine(user.Username);
-        //    return View(user);
-        //}
+        [HttpGet]
+        [Route("LeaderBoard/Edit/{id}")]
+        [Authorize(Roles = "admin")]
+        public IActionResult Edit(string id)
+        {
+            LeaderBoard user = LeaderBoardDBConnector.GetLeaderBoardRow(Constants.DATA_SOURCE, id);
+            user.Username = id;
+            return View(user);
+        }
 
-        [HttpDelete]
+        [AcceptVerbs("DELETE", "POST")]
         [Route("LeaderBoard/Delete/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Delete(string id)
         {
-            Console.WriteLine(id);
             LeaderBoardDBConnector.Delete(Constants.DATA_SOURCE, id);
             return Redirect("/LeaderBoard");
         }

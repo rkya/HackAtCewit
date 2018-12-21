@@ -25,7 +25,9 @@
                                 {
                                     <div>
                                         <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Videos", new { id = list[i].Id })'" />
-                                        <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Videos", new { id = list[i].Id })'" />
+                                        <form class="buttonForm" method="post" action="/Videos/Delete/@list[i].Id">
+                                            <input class="button" type="submit" value="Delete" />
+                                        </form>
                                     </div>
                                 }
                                 i++;
@@ -39,7 +41,9 @@
                                 {
                                     <div>
                                         <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Videos", new { id = list[i].Id })'" />
-                                        <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Videos", new { id = list[i].Id })'" />
+                                        <form class="buttonForm" method="post" action="/Videos/Delete/@list[i].Id">
+                                            <input class="button" type="submit" value="Delete" />
+                                        </form>
                                     </div>
                                 }
                                 i++;
@@ -53,7 +57,9 @@
                                 {
                                     <div>
                                         <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Videos", new { id = list[i].Id })'" />
-                                        <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Videos", new { id = list[i].Id })'" />
+                                        <form class="buttonForm" method="post" action="/Videos/Delete/@list[i].Id">
+                                            <input class="button" type="submit" value="Delete" />
+                                        </form>
                                     </div>
                                 }
                                 i++;
