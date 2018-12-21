@@ -23,12 +23,12 @@ namespace HackAtCewitManagementSystem.Controllers
             if (id.HasValue)
             {
                 sqlString += " WHERE Id = " + id.Value;
-                var model = ResourceDBConnector.GetResources(sqlString);
+                var model = ResourceDBConnector.GetResources(Constants.DATA_SOURCE, sqlString);
                 var singleEvent = model.Count > 0 ? model.First() : new Resource();
                 Console.WriteLine(singleEvent.Id);
                 return sendJson != null && sendJson.Equals("True") ? Json(singleEvent) : (IActionResult)View(singleEvent);
             }
-            var eventList = ResourceDBConnector.GetResources(sqlString);
+            var eventList = ResourceDBConnector.GetResources(Constants.DATA_SOURCE, sqlString);
 
             return sendJson != null && sendJson.Equals("True") ? Json(eventList) : (IActionResult)View(eventList);
         }
@@ -38,7 +38,7 @@ namespace HackAtCewitManagementSystem.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Add(Resource resource)
         {
-            ResourceDBConnector.Create(resource);
+            ResourceDBConnector.Create(Constants.DATA_SOURCE, resource);
 
             return Redirect("/Resources");
         }
@@ -56,7 +56,7 @@ namespace HackAtCewitManagementSystem.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Edit(Resource resource, int id)
         {
-            ResourceDBConnector.Update(resource);
+            ResourceDBConnector.Update(Constants.DATA_SOURCE, resource);
 
             return Redirect("/Resources");
         }
@@ -66,7 +66,7 @@ namespace HackAtCewitManagementSystem.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Edit(int id)
         {
-            return View(ResourceDBConnector.GetResource(id));
+            return View(ResourceDBConnector.GetResource(Constants.DATA_SOURCE, id));
         }
 
         [HttpDelete]
@@ -74,7 +74,7 @@ namespace HackAtCewitManagementSystem.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
-            ResourceDBConnector.Delete(id);
+            ResourceDBConnector.Delete(Constants.DATA_SOURCE, id);
             return Redirect("/Resources");
         }
     }

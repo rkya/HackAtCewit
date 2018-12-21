@@ -16,8 +16,8 @@ namespace HackAtCewitManagementSystem.Controllers
         public IActionResult Index([FromHeader]string sendJson)
         {
             ViewBag.Active = "Checkin";
-            List<Checkin> checkins = CheckinDBConnector.GetCheckins();
-            List<User> nonCheckedinUsers = CheckinDBConnector.GetNonCheckedinUsers();
+            List<Checkin> checkins = CheckinDBConnector.GetCheckins(Constants.DATA_SOURCE);
+            List<User> nonCheckedinUsers = CheckinDBConnector.GetNonCheckedinUsers(Constants.DATA_SOURCE);
 
             UserCheckinInfo model = new UserCheckinInfo(checkins, nonCheckedinUsers);
 
@@ -58,7 +58,7 @@ namespace HackAtCewitManagementSystem.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult CheckinUser(User user)
         {
-            CheckinDBConnector.Checkin(user.Username, User.Identity.Name);
+            CheckinDBConnector.Checkin(Constants.DATA_SOURCE, user.Username, User.Identity.Name);
             return Redirect("/Checkin");
         }
 

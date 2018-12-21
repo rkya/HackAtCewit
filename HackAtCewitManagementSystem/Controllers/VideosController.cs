@@ -17,7 +17,7 @@ namespace HackAtCewitManagementSystem.Controllers
         public IActionResult Index([FromHeader]string sendJson)
         {
             ViewBag.Active = "Video";
-            var model = VideoDBConnector.GetVideos();
+            var model = VideoDBConnector.GetVideos(Constants.DATA_SOURCE);
             return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
         }
 
@@ -25,7 +25,7 @@ namespace HackAtCewitManagementSystem.Controllers
         [Route("Videos/Add")]
         public IActionResult Add(Video video)
         {
-            VideoDBConnector.Create(video);
+            VideoDBConnector.Create(Constants.DATA_SOURCE, video);
 
             return Redirect("/Videos");
         }
@@ -41,7 +41,7 @@ namespace HackAtCewitManagementSystem.Controllers
         [Route("Videos/Edit/{id}")]
         public IActionResult Edit(Video video, int id)
         {
-            VideoDBConnector.Update(video);
+            VideoDBConnector.Update(Constants.DATA_SOURCE, video);
 
             return Redirect("/Videos");
         }
@@ -50,14 +50,14 @@ namespace HackAtCewitManagementSystem.Controllers
         [Route("Videos/Edit/{id}")]
         public IActionResult Edit(int id)
         {
-            return View(VideoDBConnector.GetVideo(id));
+            return View(VideoDBConnector.GetVideo(Constants.DATA_SOURCE, id));
         }
 
         [HttpDelete]
         [Route("Videos/Delete/{id}")]
         public IActionResult Delete(int id)
         {
-            VideoDBConnector.Delete(id);
+            VideoDBConnector.Delete(Constants.DATA_SOURCE, id);
             return Redirect("/Videos");
         }
     }

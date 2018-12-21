@@ -11,11 +11,11 @@ namespace HackAtCewitManagementSystem.Utils
 {
     public static class ScheduleDBConnector
     {
-        public static List<Schedule> GetSchedules(string sqlQuery)
+        public static List<Schedule> GetSchedules(string dataSource, string sqlQuery)
         {
             List<Schedule> schedules = new List<Schedule>();
 
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
 
@@ -48,11 +48,11 @@ namespace HackAtCewitManagementSystem.Utils
             return schedules;
         }
 
-        public static Schedule GetSchedule(int id)
+        public static Schedule GetSchedule(string dataSource, int id)
         {
             Schedule schedule = null;
 
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
 
@@ -80,25 +80,22 @@ namespace HackAtCewitManagementSystem.Utils
             return schedule ?? new Schedule();
         }
 
-        public static bool Create(Schedule schedule)
+        public static bool Create(string dataSource, Schedule schedule)
         {
-            return InsertOrUpdate(schedule);
+            return InsertOrUpdate(dataSource, schedule);
         }
 
-        public static bool Update(Schedule schedule)
+        public static bool Update(string dataSource, Schedule schedule)
         {
-            return InsertOrUpdate(schedule);
+            return InsertOrUpdate(dataSource, schedule);
         }
 
-        private static bool InsertOrUpdate(Schedule schedule)
+        private static bool InsertOrUpdate(string dataSource, Schedule schedule)
         {
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
                 SqliteCommand insertSQL = new SqliteCommand("INSERT OR REPLACE INTO Schedule(Id, StartTime, EndTime, EventDescription, Room, EventTitle, Presenter) VALUES ((SELECT Id FROM Schedule WHERE Id = " + schedule.Id + "), '" + schedule.StartTime + "', '" + schedule.EndTime + "', '" + schedule.EventDescription + "', '" + schedule.Room + "', '" + schedule.EventTitle + "', '" + schedule.Presenter + "')", conn);
-                //insertSQL.Parameters.Add(faq.Id);
-                //insertSQL.Parameters.Add(faq.Question);
-                //insertSQL.Parameters.Add(faq.Answer);
 
                 try
                 {
@@ -114,9 +111,9 @@ namespace HackAtCewitManagementSystem.Utils
             return true;
         }
 
-        public static bool Delete(int id)
+        public static bool Delete(string dataSource, int id)
         {
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
                 SqliteCommand deleteSQL = new SqliteCommand("DELETE FROM Schedule WHERE Id = " + id, conn);

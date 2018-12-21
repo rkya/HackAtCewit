@@ -7,10 +7,10 @@ namespace HackAtCewitManagementSystem.Utils
 {
     public static class VideoDBConnector
     {
-        public static List<Video> GetVideos() {
+        public static List<Video> GetVideos(string dataSource) {
             List<Video> videos = new List<Video>();
 
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
 
@@ -33,11 +33,11 @@ namespace HackAtCewitManagementSystem.Utils
             return videos;
         }
 
-        public static Video GetVideo(int id)
+        public static Video GetVideo(string dataSource, int id)
         {
             Video video = null;
 
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
 
@@ -61,19 +61,19 @@ namespace HackAtCewitManagementSystem.Utils
             return video ?? new Video();
         }
 
-        public static bool Create(Video video)
+        public static bool Create(string dataSource, Video video)
         {
-            return InsertOrUpdate(video);
+            return InsertOrUpdate(dataSource, video);
         }
 
-        public static bool Update(Video video)
+        public static bool Update(string dataSource, Video video)
         {
-            return InsertOrUpdate(video);
+            return InsertOrUpdate(dataSource, video);
         }
 
-        private static bool InsertOrUpdate(Video video)
+        private static bool InsertOrUpdate(string dataSource, Video video)
         {
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
                 SqliteCommand insertSQL = new SqliteCommand("INSERT OR REPLACE INTO Video(Id, Title, Url) VALUES ((SELECT Id FROM Video WHERE Id = " + video.Id + "), '" + video.Title + "', '" + video.Url + "')", conn);
@@ -92,9 +92,9 @@ namespace HackAtCewitManagementSystem.Utils
             return true;
         }
 
-        public static bool Delete(int id)
+        public static bool Delete(string dataSource, int id)
         {
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
                 SqliteCommand deleteSQL = new SqliteCommand("DELETE FROM Video WHERE Id = " + id, conn);

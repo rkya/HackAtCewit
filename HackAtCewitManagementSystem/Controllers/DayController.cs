@@ -24,8 +24,7 @@ namespace HackAtCewitManagementSystem.Controllers
 
             string sqlString = "SELECT * FROM Schedule WHERE Date(StartTime) = \"" + year + "-" + (month < 10 ? "0" : "") + month + "-" + (day < 10 ? "0" : "") + day + "\"";
 
-            //Console.WriteLine("String----->" + sqlString);
-            var model = ScheduleDBConnector.GetSchedules(sqlString);
+            var model = ScheduleDBConnector.GetSchedules(Constants.DATA_SOURCE, sqlString);
 
             return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View("Views/Schedule/Index.cshtml", model);
         }

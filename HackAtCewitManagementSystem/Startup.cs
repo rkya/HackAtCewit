@@ -27,7 +27,7 @@ namespace HackAtCewitManagementSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                  options.UseSqlite("Data Source=test.db"));
+                  options.UseSqlite("Data Source=hackatcewit.db"));
 
             //services.AddDbContext<ApplicationDbContext>(options =>
             //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

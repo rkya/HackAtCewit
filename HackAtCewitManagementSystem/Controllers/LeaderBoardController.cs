@@ -18,8 +18,8 @@ namespace HackAtCewitManagementSystem.Controllers
         public IActionResult Index([FromHeader]string sendJson)
         {
             ViewBag.Active = "LeaderBoard";
-            string sqlString = "SELECT * FROM LeaderBoard ORDER BY Score DESC";
-            var board = LeaderBoardDBConnector.GetLeaderBoard(sqlString);
+
+            var board = LeaderBoardDBConnector.GetLeaderBoard(Constants.DATA_SOURCE);
 
             return sendJson != null && sendJson.Equals("True") ? Json(board) : (IActionResult)View(board);
         }
@@ -29,7 +29,7 @@ namespace HackAtCewitManagementSystem.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Add() 
         {
-            return View(LeaderBoardDBConnector.GetUsersNotOnLeaderBoard());
+            return View(LeaderBoardDBConnector.GetUsersNotOnLeaderBoard(Constants.DATA_SOURCE));
         }
 
         [HttpPut]
@@ -38,7 +38,7 @@ namespace HackAtCewitManagementSystem.Controllers
         public IActionResult Edit(LeaderBoard leaderBoard, string id)
         {
             leaderBoard.Username = id;
-            LeaderBoardDBConnector.Update(leaderBoard);
+            LeaderBoardDBConnector.Update(Constants.DATA_SOURCE, leaderBoard);
 
             return Redirect("/LeaderBoard");
         }
@@ -61,7 +61,7 @@ namespace HackAtCewitManagementSystem.Controllers
         public IActionResult Delete(string id)
         {
             Console.WriteLine(id);
-            LeaderBoardDBConnector.Delete(id);
+            LeaderBoardDBConnector.Delete(Constants.DATA_SOURCE, id);
             return Redirect("/LeaderBoard");
         }
     }

@@ -9,7 +9,7 @@ namespace HackAtCewitManagementSystem.Utils
 {
     public class Constants
     {
-        public static string DATA_SOURCE = "Data Source=test.db";
+        public static string DATA_SOURCE = "Data Source=hackatcewit.db";
 
         public class Sql
         {

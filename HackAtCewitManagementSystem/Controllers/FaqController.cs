@@ -17,7 +17,7 @@ namespace HackAtCewitManagementSystem.Controllers
         public IActionResult Index([FromHeader]string sendJson)
         {
             ViewBag.Active = "Faq";
-            var model = FaqDBConnector.GetFaqs();
+            var model = FaqDBConnector.GetFaqs(Constants.DATA_SOURCE);
             return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
         }
 
@@ -25,7 +25,7 @@ namespace HackAtCewitManagementSystem.Controllers
         [Route("Faq/Add")]
         [Authorize(Roles = "admin")]
         public IActionResult Add(Faq faq) {
-            FaqDBConnector.Create(faq);
+            FaqDBConnector.Create(Constants.DATA_SOURCE, faq);
 
             return Redirect("/Faq");
         }
@@ -47,7 +47,7 @@ namespace HackAtCewitManagementSystem.Controllers
             Console.WriteLine(faq.Question);
             Console.WriteLine(faq.Answer);
             Console.WriteLine("--------------------");
-            FaqDBConnector.Update(faq);
+            FaqDBConnector.Update(Constants.DATA_SOURCE, faq);
 
             return Redirect("/Faq");
         }
@@ -61,7 +61,7 @@ namespace HackAtCewitManagementSystem.Controllers
             Console.WriteLine(faq.Question);
             Console.WriteLine(faq.Answer);
             Console.WriteLine("--------------------");
-            FaqDBConnector.Update(faq);
+            FaqDBConnector.Update(Constants.DATA_SOURCE, faq);
 
             return Redirect("/Faq");
         }
@@ -76,7 +76,7 @@ namespace HackAtCewitManagementSystem.Controllers
             Console.WriteLine(faq.Question);
             Console.WriteLine(faq.Answer);
             Console.WriteLine("--------------------");
-            FaqDBConnector.Update(faq);
+            FaqDBConnector.Update(Constants.DATA_SOURCE, faq);
 
             return Redirect("/Faq");
         }
@@ -88,7 +88,7 @@ namespace HackAtCewitManagementSystem.Controllers
         public IActionResult Edit(int id)
         {
             Console.WriteLine("called the get method again!!");
-            return View(FaqDBConnector.GetFaq(id));
+            return View(FaqDBConnector.GetFaq(Constants.DATA_SOURCE, id));
         }
 
         [HttpDelete]
@@ -96,7 +96,7 @@ namespace HackAtCewitManagementSystem.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
-            FaqDBConnector.Delete(id);
+            FaqDBConnector.Delete(Constants.DATA_SOURCE, id);
             return Redirect("/Faq");
         }
     }

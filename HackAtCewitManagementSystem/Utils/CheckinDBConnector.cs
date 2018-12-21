@@ -7,10 +7,10 @@ namespace HackAtCewitManagementSystem.Utils
 {
     public static class CheckinDBConnector
     {
-        public static List<Checkin> GetCheckins() {
+        public static List<Checkin> GetCheckins(string dataSource) {
             List<Checkin> checkins = new List<Checkin>();
 
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
 
@@ -42,11 +42,11 @@ namespace HackAtCewitManagementSystem.Utils
             return checkins;
         }
 
-        public static List<User> GetNonCheckedinUsers()
+        public static List<User> GetNonCheckedinUsers(string dataSource)
         {
             List<User> users = new List<User>();
 
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
 
@@ -70,8 +70,8 @@ namespace HackAtCewitManagementSystem.Utils
             return users;
         }
 
-        public static bool Checkin(string user, string admin) {
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+        public static bool Checkin(string dataSource, string user, string admin) {
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 bool returnValue = true;
 

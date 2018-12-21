@@ -11,11 +11,12 @@ namespace HackAtCewitManagementSystem.Utils
 {
     public static class LeaderBoardDBConnector
     {
-        public static List<LeaderBoard> GetLeaderBoard(string sqlQuery)
+        public static List<LeaderBoard> GetLeaderBoard(string dataSource)
         {
+            string sqlQuery = "SELECT * FROM LeaderBoard ORDER BY Score DESC";
             List<LeaderBoard> leaderBoard = new List<LeaderBoard>();
 
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
 
@@ -38,11 +39,11 @@ namespace HackAtCewitManagementSystem.Utils
             return leaderBoard;
         }
 
-        public static LeaderBoard GetLeaderBoardRow(string username)
+        public static LeaderBoard GetLeaderBoardRow(string dataSource, string username)
         {
             LeaderBoard leaderBoard = null;
 
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
 
@@ -66,19 +67,19 @@ namespace HackAtCewitManagementSystem.Utils
             return leaderBoard ?? new LeaderBoard();
         }
 
-        public static bool Create(LeaderBoard leaderBoard)
+        public static bool Create(string dataSource, LeaderBoard leaderBoard)
         {
-            return InsertOrUpdate(leaderBoard);
+            return InsertOrUpdate(dataSource, leaderBoard);
         }
 
-        public static bool Update(LeaderBoard leaderBoard)
+        public static bool Update(string dataSource, LeaderBoard leaderBoard)
         {
-            return InsertOrUpdate(leaderBoard);
+            return InsertOrUpdate(dataSource, leaderBoard);
         }
 
-        private static bool InsertOrUpdate(LeaderBoard leaderBoard)
+        private static bool InsertOrUpdate(string dataSource, LeaderBoard leaderBoard)
         {
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
 
                 conn.Open();
@@ -98,9 +99,9 @@ namespace HackAtCewitManagementSystem.Utils
             return true;
         }
 
-        public static bool Delete(string username)
+        public static bool Delete(string dataSource, string username)
         {
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
                 SqliteCommand deleteSQL = new SqliteCommand("DELETE FROM LeaderBoard WHERE Username = '" + username + "'", conn);
@@ -119,11 +120,11 @@ namespace HackAtCewitManagementSystem.Utils
             return true;
         }
 
-        public static List<LeaderBoard> GetUsersNotOnLeaderBoard()
+        public static List<LeaderBoard> GetUsersNotOnLeaderBoard(string dataSource)
         {
             List<LeaderBoard> leaderBoard = new List<LeaderBoard>();
 
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
 
