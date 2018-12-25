@@ -12,6 +12,11 @@ namespace HackAtCewitManagementSystem.Controllers
     [Authorize]
     public class FaqController : Controller
     {
+        /// <summary>
+        /// Shows FAQs
+        /// </summary>
+        /// <returns>A list of questions and answers.</returns>
+        /// <param name="sendJson">true if the list needs to be in the form of json.</param>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Index([FromHeader]string sendJson)
@@ -21,6 +26,11 @@ namespace HackAtCewitManagementSystem.Controllers
             return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
         }
 
+        /// <summary>
+        /// Allows admin to add a new FAQ.
+        /// </summary>
+        /// <returns>Redirects to FAQ page.</returns>
+        /// <param name="faq">FAQ to be added.</param>
         [HttpPost]
         [Route("Faq/Add")]
         [Authorize(Roles = "admin")]
@@ -30,6 +40,10 @@ namespace HackAtCewitManagementSystem.Controllers
             return Redirect("/Faq");
         }
 
+        /// <summary>
+        /// View for website.
+        /// </summary>
+        /// <returns>A blank view.</returns>
         [HttpGet]
         [Route("Faq/Add")]
         [Authorize(Roles = "admin")]
@@ -38,6 +52,12 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(new Faq());
         }
 
+        /// <summary>
+        /// Allows an admin to edit an exisiting FAQ.
+        /// </summary>
+        /// <returns>Redirects to the FAQ page.</returns>
+        /// <param name="faq">FAQ to be edited.</param>
+        /// <param name="id">FAQ id.</param>
         [AcceptVerbs("PUT", "POST")]
         [Route("Faq/Edit/{id}")]
         [Authorize(Roles = "admin")]
@@ -48,6 +68,11 @@ namespace HackAtCewitManagementSystem.Controllers
             return Redirect("/Faq");
         }
 
+        /// <summary>
+        /// View for editing the FAQ.
+        /// </summary>
+        /// <returns>The FAQ to be edited.</returns>
+        /// <param name="id">FAQ id.</param>
         [HttpGet]
         [Route("Faq/Edit/{id}")]
         [Authorize(Roles ="admin")]
@@ -56,6 +81,11 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(FaqDBConnector.GetFaq(Constants.DATA_SOURCE, id));
         }
 
+        /// <summary>
+        /// Delete the specified FAQ.
+        /// </summary>
+        /// <returns>Redirects to the FAQ page.</returns>
+        /// <param name="id">FAQ id.</param>
         [AcceptVerbs("DELETE", "POST")]
         [Route("Faq/Delete/{id}")]
         [Authorize(Roles = "admin")]

@@ -13,6 +13,14 @@ namespace HackAtCewitManagementSystem.Controllers
     [Authorize]
     public class DayController : Controller
     {
+        /// <summary>
+        /// Gets schedule of events on a day.
+        /// </summary>
+        /// <returns>All the events on a particular day.</returns>
+        /// <param name="year">Year.</param>
+        /// <param name="month">Month.</param>
+        /// <param name="day">Day.</param>
+        /// <param name="sendJson">true if object to be returned has to be in json format.</param>
         [HttpGet]
         [AllowAnonymous]
         [Route("Day/{year}/{month}/{day}")]
