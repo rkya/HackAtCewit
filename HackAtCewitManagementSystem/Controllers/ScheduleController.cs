@@ -32,7 +32,6 @@ namespace HackAtCewitManagementSystem.Controllers
         public IActionResult GetSchedule([FromHeader]string sendJson, int id)
         {
             ViewBag.Active = "Schedule";
-            //string sqlString = "SELECT * FROM Schedule WHERE Id = " + id + " ORDER BY datetime(StartTime)";
 
             List<Schedule> eventList = new List<Schedule>();
             eventList.Add(ScheduleDBConnector.GetSchedule(Constants.DATA_SOURCE, id));

@@ -25,7 +25,6 @@ namespace HackAtCewitManagementSystem.Controllers
                 sqlString += " WHERE Id = " + id.Value;
                 var model = ResourceDBConnector.GetResources(Constants.DATA_SOURCE, sqlString);
                 var singleEvent = model.Count > 0 ? model.First() : new Resource();
-                Console.WriteLine(singleEvent.Id);
                 return sendJson != null && sendJson.Equals("True") ? Json(singleEvent) : (IActionResult)View(singleEvent);
             }
             var eventList = ResourceDBConnector.GetResources(Constants.DATA_SOURCE, sqlString);

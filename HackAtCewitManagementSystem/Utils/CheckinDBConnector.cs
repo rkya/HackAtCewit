@@ -26,7 +26,7 @@ namespace HackAtCewitManagementSystem.Utils
                         {
                             Username = rdr["Username"] == DBNull.Value ? "" : (string)rdr["Username"],
                             Id = rdr["UserId"] == DBNull.Value ? "" : (string)rdr["UserId"]
-                        },//rdr["Answer"] == DBNull.Value ? "" : (string)rdr["Answer"],
+                        },
                         admin = new User
                         {
                             Username = rdr["AdminUsername"] == DBNull.Value ? "" : (string)rdr["AdminUsername"],
