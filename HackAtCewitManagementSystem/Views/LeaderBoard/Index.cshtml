@@ -41,8 +41,12 @@
                                             @if (this.User.IsInRole("admin"))
                                             {
                                                 <td style="        width: 30%;">
-                                                    <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "LeaderBoard", new { id = position.Username })'" />
-                                                    <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "LeaderBoard", new { id = position.Username })'" />
+                                                    <form class="buttonForm" method="get" action="/LeaderBoard/Edit/@position.Username">
+                                                        <input class="button" type="submit" value="Edit" />
+                                                    </form>
+                                                    <form class="buttonForm" method="post" action="/LeaderBoard/Delete/@position.Username">
+                                                        <input class="button" type="submit" value="Delete" />
+                                                    </form>
                                                 </td>
                                             }
                                         </tr>
