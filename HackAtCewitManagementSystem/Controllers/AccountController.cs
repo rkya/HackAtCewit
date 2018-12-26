@@ -54,8 +54,7 @@ namespace HackAtCewitManagementSystem.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Login([FromHeader]string sendJson, LoginViewModel model, string returnUrl = null)
         {
             ViewBag.Active = "Login";
             ViewData["ReturnUrl"] = returnUrl;
@@ -67,7 +66,7 @@ namespace HackAtCewitManagementSystem.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToLocal(returnUrl);
+                    return sendJson != null && sendJson.Equals("True") ? Json(model) : RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -81,7 +80,7 @@ namespace HackAtCewitManagementSystem.Controllers
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
+                    return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
                 }
             }
 
