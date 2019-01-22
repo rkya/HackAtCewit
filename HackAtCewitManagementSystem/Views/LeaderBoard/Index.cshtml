@@ -9,123 +9,51 @@
                 <div class="container">
                     <div class="tab">
                         @model List<LeaderBoard>
-                        <h1>Leader Board</h1>
                         <center>
-                            <table class="leaderBoard" style="        empty-cells: show;
-        max-width: 100%;
-        background: #eee;
-        margin: 0 0 20px .5%;
-        border: 8px solid #fff;
-        box-shadow: 0 0 0 1px #900;
-        position: relative;
-        margin: 10px .5% 20px;
-        width: 99% !important;
-        font-family: 'Effra W01 Regular', 'Trade Gothic Next W01', Arial, sans-serif;
-        padding: 35px 0 40px 40px;
-        background-color: #fff;
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 1.7em;">
-                                <thead style="        color: #900;">
-                                    <tr style="        margin-top: 0;
-        margin-bottom: 0;
-        padding-top: 10px 20px;
-        box-sizing: border-box;
-        display: table-row;
-        background-color: rgb(238, 238, 238);">
-                                        <th style="        padding-top: .9em;
-        padding: 0px 20px;
-        display: table-cell;
-        font-weight: 900;
-        box-sizing: border-box;
-        border-right: 1px solid #bbb;
-        height: 60px;
-        vertical-align: middle;
-    ">Username</th>
-                                        <th style="        padding-top: .9em;
-        padding: 0px 20px;
-        display: table-cell;
-        font-weight: 900;
-        box-sizing: border-box;
-        border-right: 1px solid #bbb;
-        height: 60px;
-        vertical-align: middle;">Score</th>
-                                        <th style="        padding-top: .9em;
-        padding: 0px 20px;
-        display: table-cell;
-        font-weight: 900;
-        box-sizing: border-box;
-        border-right: 1px solid #bbb;
-        height: 60px;
-        vertical-align: middle;">LastUpdated</th>
+                        @if (Model == null || Model.Count == 0)
+                        {
+                            <h4>Sorry, leaderboard not available at the moment!</h4>
+                        }
+                        else
+                        {
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Username</th>
+                                        <th>Score</th>
+                                        <th>LastUpdated</th>
+                                        @if (User.IsInRole("admin"))
+                                        {
+                                            <th>Action</th>
+                                        }
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @{int RowNo = 1;}
+                                    @{int RowNo = 0;}
                                     @foreach (var position in Model)
                                     {
-                                        @if (RowNo % 2 == 1)
-                                        {
-                                            <tr style="        margin-top: 0;
-        margin-bottom: 0;
-        padding-top: 10px;
-        background-color: #cccccc">
-                                                <td style="        padding-top: .9em;
-        padding: 0px 20px;
-        display: table-cell;
-        box-sizing: border-box;
-        border-right: 1px solid #bbb;
-        height: 60px;
-        vertical-align: middle;">@position.Username</td>
-                                                <td style="        padding-top: .9em;
-        padding: 0px 20px;
-        display: table-cell;
-        box-sizing: border-box;
-        border-right: 1px solid #bbb;
-        height: 60px;
-        vertical-align: middle;">@position.Score</td>
-                                                <td style="        padding-top: .9em;
-        padding: 0px 20px;
-        display: table-cell;
-        box-sizing: border-box;
-        border-right: 1px solid #bbb;
-        height: 60px;
-        vertical-align: middle;">@position.LastUpdated</td>
-                                            </tr>
-                                        }
-                                        else
-                                        {
-                                            <tr id="black" style="        margin-top: 0;
-        margin-bottom: 0;
-        padding-top: 10px;
-        background-color: rgb(238, 238, 238)">
-                                                <td style="        padding-top: .9em;
-        padding: 0px 20px;
-        display: table-cell;
-        box-sizing: border-box;
-        border-right: 1px solid #bbb;
-        height: 60px;
-        vertical-align: middle;">@position.Username</td>
-                                                <td style="        padding-top: .9em;
-        padding: 0px 20px;
-        display: table-cell;
-        box-sizing: border-box;
-        border-right: 1px solid #bbb;
-        height: 60px;
-        vertical-align: middle;">@position.Score</td>
-                                                <td style="        padding-top: .9em;
-        padding: 0px 20px;
-        display: table-cell;
-        box-sizing: border-box;
-        border-right: 1px solid #bbb;
-        height: 60px;
-        vertical-align: middle;">@position.LastUpdated</td>
-                                            </tr>
-                                        }
-                                        RowNo++;
+                                        <tr class="@(++RowNo % 2 == 1 ? "trDark" : "trLight")">
+                                            <td style="        width: 10%;">@RowNo</td>
+                                            <td>@position.Username</td>
+                                            <td style="        width: 10%;">@position.Score</td>
+                                            <td style="        width: 15%;">@position.LastUpdated</td>
+                                            @if (this.User.IsInRole("admin"))
+                                            {
+                                                <td style="        width: 30%;">
+                                                    <form class="buttonForm" method="get" action="/LeaderBoard/Edit/@position.Username">
+                                                        <input class="button" type="submit" value="Edit" />
+                                                    </form>
+                                                    <form class="buttonForm" method="post" action="/LeaderBoard/Delete/@position.Username">
+                                                        <input class="button" type="submit" value="Delete" />
+                                                    </form>
+                                                </td>
+                                            }
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
+                            }
                         </center>
                     </div>
                 </div>
@@ -133,3 +61,6 @@
         </div>
     </div>
 </section>
+@section Styles {
+    <link href="@Url.Content("~/css/LeaderBoard/Index.css")" rel="stylesheet" type="text/css" />
+}

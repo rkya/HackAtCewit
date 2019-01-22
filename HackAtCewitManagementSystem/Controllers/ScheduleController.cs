@@ -15,25 +15,26 @@ namespace HackAtCewitManagementSystem.Controllers
     {
         [AllowAnonymous]
         [Route("Schedule")]
+        [HttpGet]
         public IActionResult Index([FromHeader]string sendJson)
         {
             ViewBag.Active = "Schedule";
             string sqlString = "SELECT * FROM Schedule ORDER BY datetime(StartTime)";
 
-            var eventList = ScheduleDBConnector.GetSchedules(sqlString);
+            var eventList = ScheduleDBConnector.GetSchedules(Constants.DATA_SOURCE, sqlString);
 
             return sendJson != null && sendJson.Equals("True") ? Json(eventList) : (IActionResult)View(eventList);
         }
 
         [AllowAnonymous]
         [Route("Schedule/{id}")]
+        [HttpGet]
         public IActionResult GetSchedule([FromHeader]string sendJson, int id)
         {
             ViewBag.Active = "Schedule";
-            //string sqlString = "SELECT * FROM Schedule WHERE Id = " + id + " ORDER BY datetime(StartTime)";
 
             List<Schedule> eventList = new List<Schedule>();
-            eventList.Add(ScheduleDBConnector.GetSchedule(id));
+            eventList.Add(ScheduleDBConnector.GetSchedule(Constants.DATA_SOURCE, id));
 
             return sendJson != null && sendJson.Equals("True") ? Json(eventList) : (IActionResult)View("~/Views/Schedule/Index.cshtml", eventList);
         }
@@ -43,7 +44,7 @@ namespace HackAtCewitManagementSystem.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Add(Schedule schedule)
         {
-            ScheduleDBConnector.Create(schedule);
+            ScheduleDBConnector.Create(Constants.DATA_SOURCE, schedule);
 
             return Redirect("/Schedule");
         }
@@ -56,16 +57,12 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(new Schedule());
         }
 
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs("PUT", "POST")]
         [Route("Schedule/Edit/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Edit(Schedule schedule, int id)
         {
-            //Console.WriteLine("----------------------------------");
-            //Console.WriteLine(faq.Question);
-            //Console.WriteLine(faq.Answer);
-
-            ScheduleDBConnector.Update(schedule);
+            ScheduleDBConnector.Update(Constants.DATA_SOURCE, schedule);
 
             return Redirect("/Schedule");
         }
@@ -75,19 +72,15 @@ namespace HackAtCewitManagementSystem.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Edit(int id)
         {
-            //Console.WriteLine(User.IsInRole("admin"));
-            //Console.WriteLine(User.Identity);
-            //Console.WriteLine(User.Claims);
-            //Console.WriteLine(User.Identities);
-            return View(ScheduleDBConnector.GetSchedule(id));
+            return View(ScheduleDBConnector.GetSchedule(Constants.DATA_SOURCE, id));
         }
 
-        [AcceptVerbs("DELETE", "GET")]
+        [AcceptVerbs("DELETE", "POST")]
         [Route("Schedule/Delete/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
-            ScheduleDBConnector.Delete(id);
+            ScheduleDBConnector.Delete(Constants.DATA_SOURCE, id);
             return Redirect("/Schedule");
         }
     }

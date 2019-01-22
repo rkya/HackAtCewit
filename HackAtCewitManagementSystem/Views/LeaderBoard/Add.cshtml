@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Add to Leader Board";
+}
+<section class="leaderBoard text-center" id="leaderBoard">
+    <div class="container sched">
+        <div class="row">
+            <div class="col-md-12 mx-auto">
+                <hr>
+                <div class="container">
+                    <div class="tab">
+                        @model List<LeaderBoard>
+                        @if (Model == null || Model.Count == 0)
+                        {
+                            <h4>Sorry, no checked-in users available!</h4>
+                        }
+                        else
+                        {
+                            <center>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{int RowNo = 0;}
+                                        @for (int i = 0; i < Model.Count; i++)
+                                        {
+                                            var user = Model[i];
+                                            @using (Html.BeginForm())
+                                            {
+
+                                            <tr class="@(++RowNo % 2 == 1 ? "trDark" : "trLight")">
+                                                <td>@user.Username</td>
+                                                <td style="        width: 30%;">
+                                                    <input class="button" type="button" value="Add" onclick="location.href='/LeaderBoard/Edit/@user.Username';" />
+                                                </td>
+                                            </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </center>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Styles {
+    <link href="@Url.Content("~/css/LeaderBoard/Add.css")" rel="stylesheet" type="text/css" />
+}

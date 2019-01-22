@@ -6,7 +6,6 @@
     <title>@ViewData["Title"] - HackAtCewitManagementSystem</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/images/branding/apple-touch-icon-144x144-precomposed.png" />
     @RenderSection("Styles", false)
-
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -19,8 +18,18 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/branding.css" asp-append-version="true" />
     </environment>
+    @*<script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>*@
 </head>
+
 <body>
+    @*@section JavaScript
+        {
+            <script type="text/javascript" scr="~/lib/jquery/dist/jquery.min.js"></script>
+            <script type="text/javascript" scr="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+            <script type="text/javascript" scr="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+        }*@
     <div>
         <nav class="stonybrook-navbar-rays navbar navbar-fixed-top">
             <div class="container">
@@ -48,50 +57,133 @@
             <div class="tagline">A New York State Center of Excellence</div>
         </div>
         <nav class="stonybrook-navbar-solid navbar">
-            <div style="height: 100% !important" class="navbar-collapse collapse">
-                <div style="text-align: center; height: 100% !important">
+            <div style="        height: 100% !important" class="navbar-collapse collapse">
+                <div style="        text-align: center;
+        height: 100% !important">
                     <ul class="nav navbar-nav">
-                        <li class="@(ViewBag.Active=="Home"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="">HOME</a></li>
-                        <li class="@(ViewBag.Active=="About"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="About" asp-route-id="">ABOUT</a></li>
-                        <li class="@(ViewBag.Active=="Faq"? "active" : "")"><a asp-area="" asp-controller="Faq" asp-action="Index" asp-route-id="">FAQ</a></li>
-                        <li class="@(ViewBag.Active=="Schedule"? "active" : "")"><a asp-area="" asp-controller="Schedule" asp-action="Index" asp-route-id="">SCHEDULE</a></li>
-                        <li class="@(ViewBag.Active=="Video"? "active" : "")"><a asp-area="" asp-controller="Videos" asp-action="Index" asp-route-id="">VIDEO</a></li>
-                        <li class="@(ViewBag.Active=="Resources"? "active" : "")"><a asp-area="" asp-controller="Resources" asp-action="Index" asp-route-id="">RESOURCES</a></li>
+                        <ul class="nav navbar-nav">
+                            <li id="home" class="@(ViewBag.Active=="Home"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="">HOME</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav">
+                            <li id="about" class="@(ViewBag.Active=="About"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="About" asp-route-id="">ABOUT</a></li>
+                        </ul>
+                        @*<li class="@(ViewBag.Active=="Faq"? "active" : "")"><a asp-area="" asp-controller="Faq" asp-action="Index" asp-route-id="">FAQ</a></li>*@
+                        <ul class="nav navbar-nav">
+                            <li id="faq" style="        float: left;" class="@(ViewBag.Active=="Faq"? "active" : "")"><a asp-area="" asp-controller="Faq" asp-action="Index" asp-route-id="">FAQ</a></li><br/>
+                            <ul  class="nav navbar-nav">
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <li class="dropdown-content">
+                                        <a asp-area="" asp-controller="Faq" asp-action="Add" asp-route-id="">Add</a>
+                                    </li>
+                                }
+                            </ul>
+                        </ul>
+                        @*<li class="@(ViewBag.Active=="Schedule"? "active" : "")"><a asp-area="" asp-controller="Schedule" asp-action="Index" asp-route-id="">SCHEDULE</a></li>*@
+                        <ul class="nav navbar-nav">
+                            <li id="schedule" class="@(ViewBag.Active=="Schedule"? "active" : "")"><a asp-area="" asp-controller="Schedule" asp-action="Index" asp-route-id="">SCHEDULE</a></li>
+                            <br />
+                            <ul class="nav navbar-nav">
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <li class="dropdown-content">
+                                        <a asp-area="" asp-controller="Schedule" asp-action="Add" asp-route-id="">Add</a>
+                                    </li>
+                                    <br />
+                                }
+                                <li class="dropdown-content"><a href="~/Day/2019/02/16">Feb 16</a></li>
+                                <br />
+                                <li class="dropdown-content"><a href="~/Day/2019/02/17">Feb 17</a></li>
+                                <br />
+                                <li class="dropdown-content"><a href="~/Day/2019/02/18">Feb 18</a></li>
+                            </ul>
+                        </ul>
+                        @*<li class="@(ViewBag.Active=="Video"? "active" : "")"><a asp-area="" asp-controller="Videos" asp-action="Index" asp-route-id="">VIDEO</a></li>*@
+                        <ul class="nav navbar-nav">
+                            <li id="videos" class="@(ViewBag.Active=="Video"? "active" : "")"><a asp-area="" asp-controller="Videos" asp-action="Index" asp-route-id="">VIDEO</a></li><br />
+                            <ul class="nav navbar-nav">
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <li class="dropdown-content">
+                                        <a asp-area="" asp-controller="Videos" asp-action="Add" asp-route-id="">Add</a>
+                                    </li>
+                                }
+                            </ul>
+                        </ul>
+                        @*<li class="@(ViewBag.Active=="Resources"? "active" : "")"><a asp-area="" asp-controller="Resources" asp-action="Index" asp-route-id="">RESOURCES</a></li>*@
+                        <ul class="nav navbar-nav">
+                            <li id="resources" class="@(ViewBag.Active=="Resources"? "active" : "")"><a asp-area="" asp-controller="Resources" asp-action="Index" asp-route-id="">RESOURCES</a></li></br>
+                            <ul class="nav navbar-nav">
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <li class="dropdown-content">
+                                        <a asp-area="" asp-controller="Resources" asp-action="Add" asp-route-id="">Add</a>
+                                    </li>
+                                }
+                            </ul>
+                        </ul>
+                        @if (User.IsInRole("admin") || User.IsInRole("participant"))
+                        {
+                            <ul class="nav navbar-nav">
+                                <li id="leaderboard" class="@(ViewBag.Active == "LeaderBoard" ? "active" : "")"><a asp-area="" asp-controller="LeaderBoard" asp-action="Index" asp-route-id="">LEADERBOARD</a></li><br />
+                                <ul class="nav navbar-nav">
+                                    @if (User.IsInRole("admin"))
+                                    {
+                                        <li class="dropdown-content">
+                                            <a asp-area="" asp-controller="LeaderBoard" asp-action="Add" asp-route-id="">Add</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </ul>
+                        }
+                        @if (User.IsInRole("admin"))
+                        {
+                            <ul class="nav navbar-nav">
+                                <li id="checkin" class="@(ViewBag.Active=="Checkin"? "active" : "")"><a asp-area="" asp-controller="Checkin" asp-action="Index" asp-route-id="">CHECKIN</a></li>
+                            </ul>
+                        }
+
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li>
-                                <form action="/Account/Logout" method="post">
-                                    @Html.AntiForgeryToken()
-                                    <button style="background-color:transparent; color:white; border:unset;" type="submit" formmethod="post" name="logout" value="LOGOUT">LOGOUT</button>
-                                </form>
-                            </li>
+                            <ul class="nav navbar-nav">
+                                <li id="logout">
+                                    <form action="/Account/Logout" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button style="background-color: transparent; border: unset; margin-top: 13px; margin-bottom: 10px;" type="submit" formmethod="post" name="logout" value="LOGOUT">
+                                            LOGOUT
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
                         }
                         else
                         {
-                            <li class="@(ViewBag.Active=="Login"? "active" : "")"><a asp-area="" asp-controller="Account" asp-action="Login">LOGIN</a></li>
+                            <ul class="nav navbar-nav">
+                                <li id="logout" class="@(ViewBag.Active=="Login"? "active" : "")"><a asp-area="" asp-controller="Account" asp-action="Login">LOGIN</a></li>
+                            </ul>
                         }
-
                     </ul>
                 </div>
             </div>
         </nav>
-
     </div>
     <div class="container body-wrapper">
         <div class="container body-content">
             @*<div class="branding-container">
-                <div class="event-container">
-                    <img class="event-image" src="~/images/HackCEWITStackBlack_NoDate.png" />
-                </div>
-            </div>*@
+                    <div class="event-container">
+                        <img class="event-image" src="~/images/HackCEWITStackBlack_NoDate.png" />
+                    </div>
+                </div>*@
             @RenderBody()
         </div>
     </div>
     <footer>
         <a href="https://cewit.org">CEWIT Home Page</a>
-        <div style="padding: 0px 10px 0px 10px; display: inline;">|</div>
+        <div style="        padding: 0px 10px 0px 10px;
+        display: inline;">|</div>
         <a href="http://www.stonybrook.edu/sb/search.shtml">Search Stony Brook</a>
-        <div style="padding: 0px 10px 0px 10px; display: inline;">|</div>
+        <div style="        padding: 0px 10px 0px 10px;
+        display: inline;">|</div>
         <a href="https://twitter.com/CEWIT_SBU">&#64;CEWIT_SBU</a>
         <br /><br />
         <p>
@@ -108,17 +200,17 @@
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery"
                 crossorigin="anonymous"
-                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-        </script>
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk"></script>
         <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
                 crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
+        @*<script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+            <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+            <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>*@
     </environment>
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -7,7 +7,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HackAtCewitManagementSystem.Models
 {
-    // Add profile data for application users by adding properties to the ApplicationUser class
     public class User
     {
         [Required]
@@ -15,6 +14,15 @@ namespace HackAtCewitManagementSystem.Models
 
         [Required]
         public string Username { get; set; }
+
+        public User() {
+
+        }
+
+        public User(string Id, string Username) {
+            this.Username = Username;
+            this.Id = Id;
+        }
 
     }
 }

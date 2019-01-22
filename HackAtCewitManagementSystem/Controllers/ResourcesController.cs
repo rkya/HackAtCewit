@@ -8,8 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.Sqlite;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace HackAtCewitManagementSystem.Controllers
 {
     [Authorize]
@@ -17,6 +15,7 @@ namespace HackAtCewitManagementSystem.Controllers
     {
         [AllowAnonymous]
         [Route("Resources/{id?}")]
+        [HttpGet]
         public IActionResult Index([FromHeader]string sendJson, int? id)
         {
             ViewBag.Active = "Resources";
@@ -24,12 +23,11 @@ namespace HackAtCewitManagementSystem.Controllers
             if (id.HasValue)
             {
                 sqlString += " WHERE Id = " + id.Value;
-                var model = ResourceDBConnector.GetResources(sqlString);
+                var model = ResourceDBConnector.GetResources(Constants.DATA_SOURCE, sqlString);
                 var singleEvent = model.Count > 0 ? model.First() : new Resource();
-                Console.WriteLine(singleEvent.Id);
                 return sendJson != null && sendJson.Equals("True") ? Json(singleEvent) : (IActionResult)View(singleEvent);
             }
-            var eventList = ResourceDBConnector.GetResources(sqlString);
+            var eventList = ResourceDBConnector.GetResources(Constants.DATA_SOURCE, sqlString);
 
             return sendJson != null && sendJson.Equals("True") ? Json(eventList) : (IActionResult)View(eventList);
         }
@@ -39,13 +37,7 @@ namespace HackAtCewitManagementSystem.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Add(Resource resource)
         {
-            //Console.WriteLine("----------------------------------");
-            //Console.WriteLine(resource.Title);
-            //Console.WriteLine(resource.Link);
-            //Console.WriteLine(resource.Description);
-            //Console.WriteLine(resource.ProviderName);
-
-            ResourceDBConnector.Create(resource);
+            ResourceDBConnector.Create(Constants.DATA_SOURCE, resource);
 
             return Redirect("/Resources");
         }
@@ -58,18 +50,12 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(new Resource());
         }
 
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs("PUT", "POST")]
         [Route("Resources/Edit/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Edit(Resource resource, int id)
         {
-            //Console.WriteLine("----------------------------------");
-            //Console.WriteLine(resource.Title);
-            //Console.WriteLine(resource.Link);
-            //Console.WriteLine(resource.Description);
-            //Console.WriteLine(resource.ProviderName);
-
-            ResourceDBConnector.Update(resource);
+            ResourceDBConnector.Update(Constants.DATA_SOURCE, resource);
 
             return Redirect("/Resources");
         }
@@ -79,15 +65,15 @@ namespace HackAtCewitManagementSystem.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Edit(int id)
         {
-            return View(ResourceDBConnector.GetResource(id));
+            return View(ResourceDBConnector.GetResource(Constants.DATA_SOURCE, id));
         }
 
-        [AcceptVerbs("DELETE", "GET")]
+        [AcceptVerbs("DELETE", "POST")]
         [Route("Resources/Delete/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
-            ResourceDBConnector.Delete(id);
+            ResourceDBConnector.Delete(Constants.DATA_SOURCE, id);
             return Redirect("/Resources");
         }
     }

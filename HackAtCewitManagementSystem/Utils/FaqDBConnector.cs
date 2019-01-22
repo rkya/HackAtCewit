@@ -7,10 +7,10 @@ namespace HackAtCewitManagementSystem.Utils
 {
     public static class FaqDBConnector
     {
-        public static List<Faq> GetFaqs() {
+        public static List<Faq> GetFaqs(string dataSource) {
             List<Faq> faqs = new List<Faq>();
 
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
 
@@ -33,11 +33,11 @@ namespace HackAtCewitManagementSystem.Utils
             return faqs;
         }
 
-        public static Faq GetFaq(int id)
+        public static Faq GetFaq(string dataSource, int id)
         {
             Faq faq = null;
 
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
 
@@ -61,23 +61,20 @@ namespace HackAtCewitManagementSystem.Utils
             return faq ?? new Faq();
         }
 
-        public static bool Create(Faq faq) {
-            return InsertOrUpdate(faq);
+        public static bool Create(string dataSource, Faq faq) {
+            return InsertOrUpdate(dataSource, faq);
         }
 
-        public static bool Update(Faq faq)
+        public static bool Update(string dataSource, Faq faq)
         {
-            return InsertOrUpdate(faq);
+            return InsertOrUpdate(dataSource, faq);
         }
 
-        private static bool InsertOrUpdate(Faq faq) {
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+        private static bool InsertOrUpdate(string dataSource, Faq faq) {
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
                 SqliteCommand insertSQL = new SqliteCommand("INSERT OR REPLACE INTO Faq(Id, Question, Answer) VALUES ((SELECT Id FROM Faq WHERE Id = " + faq.Id + "), '" + faq.Question + "', '" + faq.Answer + "')", conn);
-                //insertSQL.Parameters.Add(faq.Id);
-                //insertSQL.Parameters.Add(faq.Question);
-                //insertSQL.Parameters.Add(faq.Answer);
 
                 try
                 {
@@ -93,9 +90,9 @@ namespace HackAtCewitManagementSystem.Utils
             return true;
         }
 
-        public static bool Delete(int id)
+        public static bool Delete(string dataSource, int id)
         {
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
                 SqliteCommand deleteSQL = new SqliteCommand("DELETE FROM Faq WHERE Id = " + id, conn);

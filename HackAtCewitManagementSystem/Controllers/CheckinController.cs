@@ -12,23 +12,34 @@ namespace HackAtCewitManagementSystem.Controllers
     [Authorize(Roles = "admin")]
     public class CheckinController : Controller
     {
+        /// <summary>
+        /// Used to checkin users.
+        /// </summary>
+        /// <returns>The list of checkedin and non-checkedin users.</returns>
+        /// <param name="sendJson">true if returns object has to be in json format</param>
         [HttpGet]
         public IActionResult Index([FromHeader]string sendJson)
         {
-            List<Checkin> checkins = CheckinDBConnector.GetCheckins();
-            List<User> nonCheckedinUsers = CheckinDBConnector.GetNonCheckedinUsers();
+            ViewBag.Active = "Checkin";
+            List<Checkin> checkins = CheckinDBConnector.GetCheckins(Constants.DATA_SOURCE);
+            List<User> nonCheckedinUsers = CheckinDBConnector.GetNonCheckedinUsers(Constants.DATA_SOURCE);
 
             UserCheckinInfo model = new UserCheckinInfo(checkins, nonCheckedinUsers);
 
             return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
         }
 
-        [HttpGet]
-        [Route("Checkin/Add/{id}")]
+        /// <summary>
+        /// Used by admins to checkin a specific user.
+        /// </summary>
+        /// <returns>Redirects to the checkin page.</returns>
+        /// <param name="user">User to be checkedin.</param>
+        [HttpPost]
+        [Route("Checkin")]
         [Authorize(Roles = "admin")]
-        public IActionResult Add(string id)
+        public IActionResult CheckinUser(User user)
         {
-            CheckinDBConnector.Checkin(id, User.Identity.Name);
+            CheckinDBConnector.Checkin(Constants.DATA_SOURCE, user.Username, User.Identity.Name);
             return Redirect("/Checkin");
         }
 

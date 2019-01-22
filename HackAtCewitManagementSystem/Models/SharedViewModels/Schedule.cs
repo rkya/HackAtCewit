@@ -7,19 +7,26 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HackAtCewitManagementSystem.Models
 {
-    // Add profile data for application users by adding properties to the ApplicationUser class
     public class Schedule
     {
+        [RegularExpression("^([0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]:[0-5][0-9])$", ErrorMessage = "Invalid DateTime Format.")]
+        [Display(Description = "Date", Name = "Start DateTime")]
+        [Required(ErrorMessage = "Please enter the event start date and time.")]
         public string StartTime { get; set; }
 
+        [RegularExpression("^([0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]:[0-5][0-9])$", ErrorMessage = "Invalid DateTime Format.")]
+        [Display(Description = "Date", Name = "End DateTime")]
         public string EndTime { get; set; }
 
+        [Display(Name = "Description")]
         public string EventDescription { get; set; }
 
         public string Room { get; set; }
 
         public long Id { get; set; }
 
+        [Required(ErrorMessage = "Please enter the event title.")]
+        [Display(Name = "Title")]
         public string EventTitle { get; set; }
 
         public string Presenter { get; set; }

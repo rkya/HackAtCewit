@@ -4,7 +4,12 @@
 <div>
     <center>
         @model List<Video>
-        <h1>Videos</h1>
+        @if (Model == null || Model.Count == 0)
+        {
+            <h4>Sorry, no videos available!</h4>
+        }
+        else
+        {
         <table>
             @{
                 var list = Model.ToList();
@@ -12,47 +17,62 @@
                 while (i < Model.Count)
                 {
                     <tr>
-                        <td style="padding: 20px">
+                        <td style="        padding: 20px">
                             @if (i < Model.Count)
                             {
                                 <iframe width="300" height="200" src="@list[i].Url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+                                @if (this.User.IsInRole("admin"))
+                                {
+                                    <div>
+                                        <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Videos", new { id = list[i].Id })'" />
+                                        <form class="buttonForm" method="post" action="/Videos/Delete/@list[i].Id">
+                                            <input class="button" type="submit" value="Delete" />
+                                        </form>
+                                    </div>
+                                }
                                 i++;
                             }
                         </td>
-                        <td style="padding: 20px">
+                        <td style="        padding: 20px">
                             @if (i < Model.Count)
                             {
                                 <iframe width="300" height="200" src="@list[i].Url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+                                @if (this.User.IsInRole("admin"))
+                                {
+                                    <div>
+                                        <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Videos", new { id = list[i].Id })'" />
+                                        <form class="buttonForm" method="post" action="/Videos/Delete/@list[i].Id">
+                                            <input class="button" type="submit" value="Delete" />
+                                        </form>
+                                    </div>
+                                }
                                 i++;
                             }
                         </td>
-                        <td style="padding: 20px">
+                        <td style="        padding: 20px">
                             @if (i < Model.Count)
                             {
                                 <iframe width="300" height="200" src="@list[i].Url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+                                @if (this.User.IsInRole("admin"))
+                                {
+                                    <div>
+                                        <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Videos", new { id = list[i].Id })'" />
+                                        <form class="buttonForm" method="post" action="/Videos/Delete/@list[i].Id">
+                                            <input class="button" type="submit" value="Delete" />
+                                        </form>
+                                    </div>
+                                }
                                 i++;
                             }
                         </td>
                     </tr>
                 }
             }
-
-
-            @*@foreach (var video in Model.ToList())
-                {
-                    <tr>
-                        <td>
-                            <iframe width="300" height="200" src="https://www.youtube.com/embed/i9TRte-Nrz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
-                        </td>
-                        <td>
-                            <iframe width="300" height="200" src="https://www.youtube.com/embed/i9TRte-Nrz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
-                        </td>
-                        <td>
-                            <iframe width="300" height="200" src="https://www.youtube.com/embed/i9TRte-Nrz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
-                        </td>
-                    </tr>
-                }*@
         </table>
-
+        }
     </center>
 </div>
+
+@section Styles {
+    <link href="@Url.Content("~/css/Video/Index.css")" rel="stylesheet" type="text/css" />
+}

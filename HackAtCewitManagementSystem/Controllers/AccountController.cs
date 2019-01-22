@@ -54,8 +54,7 @@ namespace HackAtCewitManagementSystem.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Login([FromHeader]string sendJson, LoginViewModel model, string returnUrl = null)
         {
             ViewBag.Active = "Login";
             ViewData["ReturnUrl"] = returnUrl;
@@ -67,7 +66,7 @@ namespace HackAtCewitManagementSystem.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToLocal(returnUrl);
+                    return sendJson != null && sendJson.Equals("True") ? Json(model) : RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -81,7 +80,7 @@ namespace HackAtCewitManagementSystem.Controllers
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
+                    return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
                 }
             }
 
@@ -247,12 +246,10 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(model);
         }
 
-        //[HttpPost]
         [AcceptVerbs("GET", "POST")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
-            Console.WriteLine("Reached here.......................");
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
@@ -442,32 +439,6 @@ namespace HackAtCewitManagementSystem.Controllers
         [HttpGet]
         public IActionResult AccessDenied()
         {
-            //Console.WriteLine("-----------");
-
-            //List<Claim> list = User.Claims.ToList();
-            //for (int i = 0; i < list.Count; i++) {
-            //    Console.WriteLine(list[i].Issuer);
-            //    Console.WriteLine(list[i].OriginalIssuer);
-            //    Console.WriteLine(list[i].Type);
-            //    Console.WriteLine(list[i].Value);
-            //    Console.WriteLine(list[i].ValueType);
-
-            //    List<KeyValuePair<string, string>> l2 = list[i].Properties.ToList();
-            //    Console.WriteLine(l2.Count + "<<<");
-            //    for (int j = 0; j < l2.Count; j++) {
-            //        Console.WriteLine("  " + l2[j].Key);
-            //        Console.WriteLine("  " + l2[j].Value);
-            //    }
-            //    Console.WriteLine(list[i].Subject);
-            //}
-
-
-            //Console.WriteLine(User.Claims.ToList().Count);
-            //Console.WriteLine(User.Identities.ToList().Count);
-            //Console.WriteLine(User.Identity.Name);
-            //Console.WriteLine("Participant ? " + User.IsInRole("participant"));
-            //Console.WriteLine("Admin ? " + User.IsInRole("admin"));
-            //Console.WriteLine("ADMIN ? " + User.IsInRole("ADMIN"));
             return View();
         }
 

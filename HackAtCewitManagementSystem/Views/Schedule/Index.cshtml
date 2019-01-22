@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Schedule";
 }
-<section class="schedule text-center" id="schedule">
+<section class="text-center">
     <div class="container sched">
         <div class="row">
             <div class="col-md-12 mx-auto">
@@ -9,7 +9,13 @@
                 <div class="container">
                     <div class="tab">
                         @model List<Schedule>
-                        @*<h1>Schedule</h1>*@
+
+                        @if (Model == null || Model.Count == 0)
+                        {
+                            <h4>Sorry, no schedule available for this day!</h4>
+                        }
+                        else
+                        {
                         <table>
                             <thead>
                                 <tr>
@@ -17,6 +23,11 @@
                                     <td>End Time</td>
                                     <td>Title</td>
                                     <td>Room Number</td>
+                                    @if (Model.Count == 1)
+                                    {
+                                        <td>Presenter</td>
+                                    }
+
                                     @if (User.IsInRole("admin"))
                                     {
                                         <td>Actions</td>
@@ -27,28 +38,46 @@
                                 @{int RowNo = 0;}
                                 @foreach (var schedule in Model)
                                 {
-                                    <tr class="@(++RowNo % 2==1? "trDark" : "trLight")">
+                                    string url = "";
+                                    try
+                                    {
+                                        url = "~/Day/" + @schedule.StartTime.Substring(0, 4) + "/" + @schedule.StartTime.Substring(5, 2) + "/" + @schedule.StartTime.Substring(8, 2);
+                                    }
+                                    catch (Exception)
+                                    {
+                                        continue;
+                                    }
+                                    <tr class="@(++RowNo % 2 == 1 ? "trDark" : "trLight")">
                                         <td><a href="~/Day/@schedule.StartTime.Substring(0, 4)/@schedule.StartTime.Substring(5, 2)/@schedule.StartTime.Substring(8, 2)">@schedule.StartTime</a></td>
                                         <td>@schedule.EndTime</td>
-                                        <td><a href="~/Schedule/@schedule.Id">@schedule.EventTitle</a></td>
+                                          <td><a href="~/Schedule/@schedule.Id">@schedule.EventTitle</a></td>
                                         <td>@schedule.Room</td>
+                                        @if (Model.Count == 1)
+                                        {
+                                            <td>@schedule.Presenter</td>
+                                        }
+
                                         @if (User.IsInRole("admin"))
                                         {
                                             <td>
-                                                <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Schedule", new { id=schedule.Id })'" />
-                                                <input class="button" type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Schedule", new { id=schedule.Id })'" />
+                                                <input class="button" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Schedule", new { id = schedule.Id })'" />
+                                                <form class="buttonForm" method="post" action="/Schedule/Delete/@schedule.Id">
+                                                    <input class="button" type="submit" value="Delete" />
+                                                </form>
                                             </td>
                                         }
                                     </tr>
                                     @if (Model.Count == 1)
                                     {
-                                        <tr class="@(++RowNo % 2==1? "trDark" : "trLight")">
-                                            <td colspan="4">@schedule.EventDescription</td>
+                                        <tr class="@(++RowNo % 2 == 1 ? "trDark" : "trLight")">
+                                            <td colspan="@(User.IsInRole("admin") ? "6" : "5")" style="        text-align: justify;
+        padding: 20px;">@schedule.EventDescription</td>
                                         </tr>
                                     }
                                 }
                             </tbody>
                         </table>
+                                    }
                     </div>
                 </div>
             </div>

@@ -12,35 +12,38 @@ namespace HackAtCewitManagementSystem.Controllers
     [Authorize]
     public class FaqController : Controller
     {
+        /// <summary>
+        /// Shows FAQs
+        /// </summary>
+        /// <returns>A list of questions and answers.</returns>
+        /// <param name="sendJson">true if the list needs to be in the form of json.</param>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Index([FromHeader]string sendJson)
         {
             ViewBag.Active = "Faq";
-            var model = FaqDBConnector.GetFaqs();
+            var model = FaqDBConnector.GetFaqs(Constants.DATA_SOURCE);
             return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
         }
 
-        public IActionResult UserTest([FromHeader]string sendJson)
-        {
-            ViewBag.Active = "Faq";
-            var model = FaqDBConnector.GetFaqs();
-            return sendJson != null && sendJson.Equals("True") ? Json(model) : (IActionResult)View(model);
-        }
-
+        /// <summary>
+        /// Allows admin to add a new FAQ.
+        /// </summary>
+        /// <returns>Redirects to FAQ page.</returns>
+        /// <param name="faq">FAQ to be added.</param>
         [HttpPost]
         [Route("Faq/Add")]
         [Authorize(Roles = "admin")]
         public IActionResult Add(Faq faq) {
-            //Console.WriteLine("----------------------------------");
-            //Console.WriteLine(faq.Question);
-            //Console.WriteLine(faq.Answer);
-
-            FaqDBConnector.Create(faq);
+            FaqDBConnector.Create(Constants.DATA_SOURCE, faq);
 
             return Redirect("/Faq");
         }
 
+        /// <summary>
+        /// View for website.
+        /// </summary>
+        /// <returns>A blank view.</returns>
         [HttpGet]
         [Route("Faq/Add")]
         [Authorize(Roles = "admin")]
@@ -49,38 +52,46 @@ namespace HackAtCewitManagementSystem.Controllers
             return View(new Faq());
         }
 
-        [AcceptVerbs("POST", "PUT")]
+        /// <summary>
+        /// Allows an admin to edit an exisiting FAQ.
+        /// </summary>
+        /// <returns>Redirects to the FAQ page.</returns>
+        /// <param name="faq">FAQ to be edited.</param>
+        /// <param name="id">FAQ id.</param>
+        [AcceptVerbs("PUT", "POST")]
         [Route("Faq/Edit/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Edit(Faq faq, int id)
         {
-            //Console.WriteLine("----------------------------------");
-            //Console.WriteLine(faq.Question);
-            //Console.WriteLine(faq.Answer);
-
-            FaqDBConnector.Update(faq);
+            FaqDBConnector.Update(Constants.DATA_SOURCE, faq);
 
             return Redirect("/Faq");
         }
 
+        /// <summary>
+        /// View for editing the FAQ.
+        /// </summary>
+        /// <returns>The FAQ to be edited.</returns>
+        /// <param name="id">FAQ id.</param>
         [HttpGet]
         [Route("Faq/Edit/{id}")]
         [Authorize(Roles ="admin")]
         public IActionResult Edit(int id)
         {
-            //Console.WriteLine(User.IsInRole("admin"));
-            //Console.WriteLine(User.Identity);
-            //Console.WriteLine(User.Claims);
-            //Console.WriteLine(User.Identities);
-            return View(FaqDBConnector.GetFaq(id));
+            return View(FaqDBConnector.GetFaq(Constants.DATA_SOURCE, id));
         }
 
-        [AcceptVerbs("DELETE", "GET")]
+        /// <summary>
+        /// Delete the specified FAQ.
+        /// </summary>
+        /// <returns>Redirects to the FAQ page.</returns>
+        /// <param name="id">FAQ id.</param>
+        [AcceptVerbs("DELETE", "POST")]
         [Route("Faq/Delete/{id}")]
         [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
-            FaqDBConnector.Delete(id);
+            FaqDBConnector.Delete(Constants.DATA_SOURCE, id);
             return Redirect("/Faq");
         }
     }

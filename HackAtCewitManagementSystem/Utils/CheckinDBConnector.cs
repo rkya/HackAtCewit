@@ -7,10 +7,10 @@ namespace HackAtCewitManagementSystem.Utils
 {
     public static class CheckinDBConnector
     {
-        public static List<Checkin> GetCheckins() {
+        public static List<Checkin> GetCheckins(string dataSource) {
             List<Checkin> checkins = new List<Checkin>();
 
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
 
@@ -26,7 +26,7 @@ namespace HackAtCewitManagementSystem.Utils
                         {
                             Username = rdr["Username"] == DBNull.Value ? "" : (string)rdr["Username"],
                             Id = rdr["UserId"] == DBNull.Value ? "" : (string)rdr["UserId"]
-                        },//rdr["Answer"] == DBNull.Value ? "" : (string)rdr["Answer"],
+                        },
                         admin = new User
                         {
                             Username = rdr["AdminUsername"] == DBNull.Value ? "" : (string)rdr["AdminUsername"],
@@ -42,11 +42,11 @@ namespace HackAtCewitManagementSystem.Utils
             return checkins;
         }
 
-        public static List<User> GetNonCheckedinUsers()
+        public static List<User> GetNonCheckedinUsers(string dataSource)
         {
             List<User> users = new List<User>();
 
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
 
@@ -70,9 +70,11 @@ namespace HackAtCewitManagementSystem.Utils
             return users;
         }
 
-        public static bool Checkin(string user, string admin) {
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+        public static bool Checkin(string dataSource, string user, string admin) {
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
+                bool returnValue = true;
+
                 conn.Open();
                 SqliteCommand insertSQL = new SqliteCommand("INSERT INTO Checkin(Username, CheckedinBy, Timestamp) VALUES ('" + user + "','" + admin + "', datetime('now', 'localtime'))", conn);
 
@@ -83,11 +85,26 @@ namespace HackAtCewitManagementSystem.Utils
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                    returnValue = false;
+                }
+
+
+                string participantRole = "INSERT INTO AspNetUserRoles(UserId, RoleId) VALUES ((SELECT Id FROM AspNetUsers WHERE UserName = '" + user + "'), (SELECT Id FROM AspNetRoles WHERE name = 'participant'))";
+
+                insertSQL = new SqliteCommand(participantRole, conn);
+
+                try
+                {
+                    insertSQL.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
                     return false;
                 }
-            }
 
-            return true;
+                return returnValue;
+            }
         }
     }
 }

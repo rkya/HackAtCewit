@@ -2,11 +2,11 @@
     ViewData["Title"] = "Add Event";
 }
 @model Schedule
-<section class="schedule" id="schedule">
+<section>
     <div class="container">
         <div class="row">
             <div class="col-lg-12 my-auto">
-                <div class="container-fluid">
+                <div class="container-fluid text-center">
                     <h3>Add new Event</h3>
                 </div>
             </div>
@@ -17,34 +17,65 @@
                 <div class="container-fluid">
                     @using (Html.BeginForm())
                     {
-                        <div>
-                            @Html.LabelFor(m => m.EventTitle)
-                            @Html.TextBoxFor(m => m.EventTitle)
-                        </div>
-                        <div>
-                            @Html.LabelFor(m => m.EventDescription)
-                            @Html.TextBoxFor(m => m.EventDescription)
-                        </div>
-                        <div>
-                            @Html.LabelFor(m => m.StartTime)
-                            @Html.TextBoxFor(m => m.StartTime)
-                        </div>
-                        <div>
-                            @Html.LabelFor(m => m.EndTime)
-                            @Html.TextBoxFor(m => m.EndTime)
-                        </div>
-                        <div>
-                            @Html.LabelFor(m => m.Room)
-                            @Html.TextBoxFor(m => m.Room)
-                        </div>
-                        <div>
-                            @Html.LabelFor(m => m.Presenter)
-                            @Html.TextBoxFor(m => m.Presenter)
-                        </div>
-                        <input type="submit" value="Add" />
+                        <table id="add">
+                            <tbody>
+                                <tr>
+                                    <td style="width:30%;">@Html.LabelFor(m => m.EventTitle)</td>
+                                    <td style="width:70%;">
+                                        @Html.TextBoxFor(m => m.EventTitle, new { @class = "text" })
+                                        @Html.ValidationMessage("EventTitle", "", new { @class = "text-danger" }, "")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30%;">@Html.LabelFor(m => m.EventDescription)</td>
+                                    <td style="width:70%;">
+                                        @Html.TextAreaFor(m => m.EventDescription, new { @class = "text" })
+                                        @Html.ValidationMessage("EventDescription", "", new { @class = "text-danger" }, "")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30%;">@Html.LabelFor(m => m.StartTime)</td>
+                                    <td style="width:70%;">
+                                        @Html.TextBoxFor(m => m.StartTime, new { placeholder = "yyyy-mm-dd hh:mm:ss", @class = "text" })
+                                        @Html.ValidationMessage("StartTime", "", new { @class = "text-danger" }, "")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30%;">@Html.LabelFor(m => m.EndTime)</td>
+                                    <td style="width:70%;">
+                                        @Html.TextBoxFor(m => m.EndTime, new { placeholder = "yyyy-mm-dd hh:mm:ss", @class = "text" })
+                                        @Html.ValidationMessage("EndTime", "", new { @class = "text-danger" }, "")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30%;">@Html.LabelFor(m => m.Room)</td>
+                                    <td style="width:70%;">
+                                        @Html.TextBoxFor(m => m.Room, new { @class = "text" })
+                                        @Html.ValidationMessage("Room", "", new { @class = "text-danger" }, "")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30%;">@Html.LabelFor(m => m.Presenter)</td>
+                                    <td style="width:70%;">
+                                        @Html.TextBoxFor(m => m.Presenter, new { @class = "text" })
+                                        @Html.ValidationMessage("Presenter", "", new { @class = "text-danger" }, "")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="margin: auto;"><input class="button" type="submit" value="Add" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     }
                 </div>
             </div>
         </div>
     </div>
 </section>
+@section Styles {
+    <link href="@Url.Content("~/css/Schedule/Add.css")" rel="stylesheet" type="text/css" />
+}
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

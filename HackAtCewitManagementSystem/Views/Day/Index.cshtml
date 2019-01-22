@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Schedule";
 }
-<section class="schedule text-center" id="schedule">
+<section>
     <div class="container sched">
         <div class="row">
             <div class="col-md-12 mx-auto">
@@ -9,29 +9,35 @@
                 <div class="container">
                     <div class="tab">
                         @model List<Schedule>
-                        @*<h1>Schedule</h1>*@
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td>Start Time</td>
-                                    <td>End Time</td>
-                                    <td>Description</td>
-                                    <td>Room Number</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @{int RowNo = 0;}
-                                @foreach (var schedule in Model)
-                                {
-                                    <tr class="@(++RowNo % 2==1? "trDark" : "trLight")">
-                                        <td>@schedule.StartTime</td>
-                                        <td>@schedule.EndTime</td>
-                                        <td>@schedule.EventDescription</td>
-                                        <td>@schedule.Room</td>
+                        @if (Model == null || Model.Count == 0)
+                        {
+                            <h4>Sorry, no schedule available for this day!</h4>
+                        }
+                        else
+                        {
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Start Time</td>
+                                        <td>End Time</td>
+                                        <td>Description</td>
+                                        <td>Room Number</td>
                                     </tr>
-                                }
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @{int RowNo = 0;}
+                                    @foreach (var schedule in Model)
+                                    {
+                                        <tr class="@(++RowNo % 2 == 1 ? "trDark" : "trLight")">
+                                            <td>@schedule.StartTime</td>
+                                            <td>@schedule.EndTime</td>
+                                            <td>@schedule.EventDescription</td>
+                                            <td>@schedule.Room</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
                     </div>
                 </div>
             </div>

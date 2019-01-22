@@ -1,5 +1,148 @@
 ﻿/* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
+
+.stonybrook-navbar-solid div.navbar-collapse.collapse div ul ul li.dropdown-content {
+    display: none;
+}
+
+.stonybrook-navbar-solid div.navbar-collapse.collapse div ul ul:hover li.dropdown-content {
+    font-family: 'Effra W01 Bold','Arial',sans-serif;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 17px;
+    padding-top: 17px;
+    padding-bottom: 15px;
+    background-color: #3d3d3d;
+    display: block;
+    z-index: 10;
+    color: white;
+    width: 100%;
+    padding: 15px 20px;
+}
+
+.stonybrook-navbar-solid div.navbar-collapse.collapse div ul ul:hover li.dropdown-content:hover {
+    font-family: 'Effra W01 Bold','Arial',sans-serif;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 17px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: black;
+    z-index: 10;
+    color: white;
+}
+
+.stonybrook-navbar-solid div.navbar-collapse.collapse div ul ul:hover li.dropdown-content a {
+    font-family: 'Effra W01 Bold','Arial',sans-serif;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 17px;
+    /*padding-top: 17px;
+padding-bottom: 15px;*/
+    padding: unset !important;
+    background-color: #3d3d3d;
+    z-index: 10;
+    color: white;
+}
+
+.stonybrook-navbar-solid div.navbar-collapse.collapse div ul li {
+    min-width: 100px !important;
+    /*background-color: orange !important;*/
+}
+    /*
+.stonybrook-navbar-solid div.navbar-collapse.collapse div ul li:hover {
+    min-width: 110px !important;
+    background-color: orange !important;
+}*/
+
+.stonybrook-navbar-solid div.navbar-collapse.collapse div ul ul ul:hover li.dropdown-content:hover a {
+    font-family: 'Effra W01 Bold','Arial',sans-serif;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 17px;
+    /*padding-top: 17px;
+    padding-bottom: 15px;*/
+    padding: unset !important;
+    background-color: black;
+    z-index: 10;
+    color: white;
+}
+
+#faq.active, #resources.active, #schedule.active, #videos.active, #leaderboard.active, #checkin.active, #home.active, #about.active, #logout.active, .test.active {
+    background-color: #a00;
+    color: white;
+}
+
+#faq, #resources, #schedule, #videos, #leaderboard, #checkin, #home, #about, #logout, .test {
+    font-family: 'Effra W01 Bold','Arial',sans-serif;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 17px;
+    padding: 11px 0px 14px 0px;
+    background-color: #900;
+    color: white;
+}
+
+#faq a:hover, #resources a:hover, #schedule a:hover, #videos a:hover, #leaderboard a:hover, #checkin a:hover, #home a:hover, #about a:hover, #logout a:hover, .test a:hover {
+    font-family: 'Effra W01 Bold','Arial',sans-serif;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 17px;
+    /*padding-top: 15px;
+    padding-bottom: 15px;*/
+    background-color: transparent;
+    color: white;
+}
+
+#faq:hover, #resources:hover, #schedule:hover, #videos:hover, #leaderboard:hover, #checkin:hover, #about:hover, #home:hover, #logout:hover, .test:hover {
+    background-color: #a00;
+    color: white;
+}
+
+/*#resources.active {
+    background-color: #a00;
+}*/
+
+/*#resources {
+    font-family: 'Effra W01 Bold','Arial',sans-serif;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 17px;
+    padding: 11px 0px 14px 0px;
+    background-color: #900;
+}*/
+
+
+/*#resources a:hover {
+    font-family: 'Effra W01 Bold','Arial',sans-serif;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 17px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: transparent;
+}
+
+#resources:hover {
+    background-color: #a00;
+}*/
+
+/*.stonybrook-navbar-solid div.navbar-collapse.collapse div ul {
+    font-family: 'Effra W01 Bold','Arial',sans-serif;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 17px;
+    padding: 6px 0px;
+    background-color: #900;
+}*/
+/*.stonybrook-navbar-solid div.navbar-collapse.collapse div ul:hover {
+    font-family: 'Effra W01 Bold','Arial',sans-serif;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 17px;
+    padding: 6px 0px;
+    background-color: #900;
+}*/
 .body-content {
     width: 80%;
     margin: auto;
@@ -67,3 +210,4 @@ footer {
         display: none;
     }
 }
+

@@ -11,11 +11,11 @@ namespace HackAtCewitManagementSystem.Utils
 {
     public static class ResourceDBConnector
     {
-        public static List<Resource> GetResources(string sqlQuery)
+        public static List<Resource> GetResources(string dataSource, string sqlQuery)
         {
             List<Resource> resources = new List<Resource>();
 
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
 
@@ -40,11 +40,11 @@ namespace HackAtCewitManagementSystem.Utils
             return resources;
         }
 
-        public static Resource GetResource(int id)
+        public static Resource GetResource(string dataSource, int id)
         {
             Resource resource = null;
 
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
 
@@ -70,19 +70,19 @@ namespace HackAtCewitManagementSystem.Utils
             return resource ?? new Resource();
         }
 
-        public static bool Create(Resource faq)
+        public static bool Create(string dataSource, Resource resource)
         {
-            return InsertOrUpdate(faq);
+            return InsertOrUpdate(dataSource, resource);
         }
 
-        public static bool Update(Resource faq)
+        public static bool Update(string dataSource, Resource resource)
         {
-            return InsertOrUpdate(faq);
+            return InsertOrUpdate(dataSource, resource);
         }
 
-        private static bool InsertOrUpdate(Resource resource)
+        private static bool InsertOrUpdate(string dataSource, Resource resource)
         {
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
                 SqliteCommand insertSQL = new SqliteCommand("INSERT OR REPLACE INTO Resource(Id, Title, Link, Description, ProviderName) VALUES ((SELECT Id FROM Resource WHERE Id = " + resource.Id + "), '" + resource.Title + "', '" + resource.Link + "', '" + resource.Description + "', '" + resource.ProviderName + "')", conn);
@@ -101,9 +101,9 @@ namespace HackAtCewitManagementSystem.Utils
             return true;
         }
 
-        public static bool Delete(int id)
+        public static bool Delete(string dataSource, int id)
         {
-            using (SqliteConnection conn = new SqliteConnection(Constants.DATA_SOURCE))
+            using (SqliteConnection conn = new SqliteConnection(dataSource))
             {
                 conn.Open();
                 SqliteCommand deleteSQL = new SqliteCommand("DELETE FROM Resource WHERE Id = " + id, conn);

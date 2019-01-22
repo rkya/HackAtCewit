@@ -1,0 +1,89 @@
+﻿.button {
+    font-family: inherit;
+    text-decoration: none;
+    color: #900;
+    border-color: #900 !important;
+    display: inline-block;
+    font-family: "Effra W01", "Arial", sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding: 9px 30px;
+    text-decoration: none !important;
+    cursor: pointer;
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+    border-width: 2px;
+    border-style: solid;
+    text-align: center;
+    line-height: 1;
+    height: 40px;
+    margin: 6px 0px 6px 20px;
+}
+
+    .button:hover {
+        background-color: #900;
+        color: white;
+    }
+
+table {
+    empty-cells: show;
+    max-width: 100%;
+    background: #eee;
+    margin: 0 0 20px .5%;
+    border: 8px solid #fff;
+    box-shadow: 0 0 0 1px #900;
+    position: relative;
+    margin: 10px .5% 20px;
+    width: 99% !important;
+    font-family: 'Effra W01 Regular', 'Trade Gothic Next W01', Arial, sans-serif;
+    padding: 35px 0 40px 40px;
+    background-color: #fff;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1.7em;
+}
+
+thead {
+    color: #900;
+    font-weight: 900;
+}
+
+.trLight {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 10px 20px;
+    box-sizing: border-box;
+    display: table-row;
+    background-color: rgb(238, 238, 238);
+}
+
+.trDark {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 10px;
+    box-sizing: border-box;
+    display: table-row;
+    background-color: #cccccc;
+}
+
+th {
+    padding: 0px 20px 0px 120px;
+    /*display: table-cell;*/
+    font-weight: 900;
+    box-sizing: border-box;
+    border-right: 1px solid #bbb;
+    height: 60px;
+    vertical-align: middle;
+    position: relative;
+}
+
+td {
+    padding-top: .9em;
+    padding: 0px 20px;
+    display: table-cell;
+    box-sizing: border-box;
+    border-right: 1px solid #bbb;
+    height: 60px;
+    vertical-align: middle;
+}

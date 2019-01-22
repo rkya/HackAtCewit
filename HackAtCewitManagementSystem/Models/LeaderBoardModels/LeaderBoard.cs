@@ -7,15 +7,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HackAtCewitManagementSystem.Models
 {
-    // Add profile data for application users by adding properties to the ApplicationUser class
     public class LeaderBoard
     {
+        [Required]
         public string Username { get; set; }
 
+        [Required]
         public long Score { get; set; }
 
         public string LastUpdated { get; set; }
-
-        public long Rank { get; set; }
     }
 }
